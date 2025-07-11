@@ -1,8 +1,8 @@
 import "../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -17,10 +17,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className="dark" suppressHydrationWarning>
       <body className={`${inter.className} flex min-h-screen flex-col`}>
-        <Header />
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">
+          <ThemeProvider>{children}</ThemeProvider>
+        </main>
         <Footer />
       </body>
     </html>

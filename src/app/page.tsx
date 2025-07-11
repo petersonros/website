@@ -1,16 +1,18 @@
-import React from 'react';
-import { Hero } from "@/components/Hero"
-import { About } from '@/components/About';
-import { Projects } from '@/components/Projects';
+import React from "react";
+import { Hero } from "@/components/Hero";
+import { About } from "@/components/About";
+import { Projects } from "@/components/Projects";
+import { Header } from "@/components/layout/Header";
 
 export default function HomePage() {
   return (
-    <main>
-      <Hero />
-      <About />
-      <Projects />
-      {/* Em breve: <About />, <Projects />, <Contact /> */}
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Projects />
+      </main>
+    </>
   );
 }
-
