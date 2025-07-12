@@ -15,7 +15,6 @@ const projects = [
       "Landing page moderna com Next.js 15 App Router, Tailwind, TypeScript, exportação estática e organização de pastas.",
     link: "https://github.com/petersonros/website"
   }
-  // Você pode adicionar mais projetos futuramente
 ]
 
 export function Projects() {
