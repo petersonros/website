@@ -1,5 +1,5 @@
 "use client";
-import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -11,13 +11,11 @@ export function Hero() {
         Técnico em informática e estudante de Análise e Desenvolvimento de
         Sistemas. Fascinado por web, Next.js e produtividade.
       </p>
-      <a
-        href="#projects"
-        className="inline-flex items-center gap-2 bg-brand text-gray-900 px-6 py-3 rounded-full text-base font-medium hover:bg-brand-dark transition"
-      >
-        Veja meus projetos
-        <ArrowRight size={18} />
-      </a>
+      <Link href="/about">
+        <span className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow hover:bg-blue-700 transition-colors">
+          Saiba mais
+        </span>
+      </Link>
     </section>
   );
 }

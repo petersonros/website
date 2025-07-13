@@ -1,5 +1,3 @@
-// src/components/layout/Header.tsx
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -18,6 +16,9 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header
@@ -40,7 +41,7 @@ export function Header() {
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
           <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={toggleMenu}
             className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
             aria-label="Abrir menu"
           >
@@ -49,7 +50,7 @@ export function Header() {
         </div>
       </div>
 
-      <MobileNav isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      {isMenuOpen && <MobileNav closeMenu={closeMenu} />}
     </header>
   );
 }

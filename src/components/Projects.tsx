@@ -1,43 +1,56 @@
-'use client'
+// src/components/Projects.tsx
+"use client";
 
-import { ProjectCard } from "./ProjectCard"
-
-const projects = [
-  {
-    title: "Clone do jogo TERMO",
-    description:
-      "Jogo web inspirado no Termo, feito com Next.js e Tailwind. Suporte a teclado físico e virtual, dicionário, acentos e tema escuro.",
-    link: "https://github.com/petersonros/termo-clone"
-  },
-  {
-    title: "Meu Site Pessoal",
-    description:
-      "Landing page moderna com Next.js 15 App Router, Tailwind, TypeScript, exportação estática e organização de pastas.",
-    link: "https://github.com/petersonros/website"
-  }
-]
+import { ProjectCard } from "@/components/ProjectCard";
 
 export function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 px-6 bg-sky-50 dark:bg-gray-950 text-gray-900 dark:text-white"
+      className="min-h-screen pt-24 md:pt-32 px-4 md:px-6 flex flex-col items-center bg-gray-50 dark:bg-gray-950"
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-          Projetos
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              title={project.title}
-              description={project.description}
-              link={project.link}
-            />
-          ))}
+      <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-gray-800 dark:text-gray-100">
+        Projetos
+      </h2>
+
+      {/* Mobile: carrossel horizontal */}
+      <div className="flex md:hidden gap-6 overflow-x-auto px-2 snap-x snap-mandatory scroll-smooth w-full">
+        <div className="flex-shrink-0 snap-center w-[90%] h-[calc(100vh-180px)]">
+          <ProjectCard
+            title="Projeto 1"
+            description="Descrição breve do projeto 1."
+          />
         </div>
+        <div className="flex-shrink-0 snap-center w-[90%] h-[calc(100vh-180px)]">
+          <ProjectCard
+            title="Projeto 2"
+            description="Descrição breve do projeto 2."
+          />
+        </div>
+        <div className="flex-shrink-0 snap-center w-[90%] h-[calc(100vh-180px)]">
+          <ProjectCard
+            title="Projeto 3"
+            description="Descrição breve do projeto 3."
+          />
+        </div>
+        {/* Adicione mais cards conforme necessário */}
+      </div>
+
+      {/* Desktop: grid de 3 colunas */}
+      <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+        <ProjectCard
+          title="Projeto 1"
+          description="Descrição breve do projeto 1."
+        />
+        <ProjectCard
+          title="Projeto 2"
+          description="Descrição breve do projeto 2."
+        />
+        <ProjectCard
+          title="Projeto 3"
+          description="Descrição breve do projeto 3."
+        />
       </div>
     </section>
-  )
+  );
 }
