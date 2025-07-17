@@ -9,7 +9,7 @@ interface Props {
 }
 
 const navItems = [
-  { href: "/about", label: "Sobre", icon: User },
+  { href: "/#about", label: "Sobre", icon: User },
   { href: "/#projects", label: "Projetos", icon: Folder },
   { href: "/#contact", label: "Contato", icon: Mail },
 ];

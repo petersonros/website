@@ -1,8 +1,4 @@
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  link: string;
-}
+import type { ProjectCardProps } from "@/types";
 
 export function ProjectCard({ title, description, link }: ProjectCardProps) {
   return (

@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import { Hero } from "@/components/Hero";
-import { About } from "@/components/About";
+import { Hero } from "@/components/sections/HeroSection";
+import { About } from "@/components/sections/AboutSection";
 import { Projects } from "@/components/Projects";
 
 export default function HomePage() {
