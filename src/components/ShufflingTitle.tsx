@@ -41,3 +41,4 @@ export function ShufflingTitle({ text, className, delay = 50 }: ShufflingTitlePr
 
   return <h2 className={className}>{displayed}</h2>;
 }
+

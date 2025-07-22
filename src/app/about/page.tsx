@@ -38,6 +38,12 @@ export default function AboutPage() {
           tutoriais e experiências que venho acumulando ao longo da minha
           trajetória.
         </p>
+        <p className="text-lg leading-relaxed">
+          Este site foi criado com <strong>Next.js</strong>,{" "}
+          <strong>TypeScript</strong> e <strong>Tailwind CSS</strong>, como
+          parte de um projeto pessoal para demonstrar minhas habilidades e
+          aprendizados na área de desenvolvimento web.
+        </p>
 
         <div className="pt-4">
           <Link

@@ -1,0 +1,17 @@
+/* src/styles/base.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* IE e Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: var(--background);
+  color: var(--foreground);
+}

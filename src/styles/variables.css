@@ -1,0 +1,21 @@
+/* src/styles/variables.css */
+
+:root {
+  --color-bg: #f8fafc;
+  --color-text: #0d1117;
+  --color-brand: #1a010b;
+}
+
+.dark {
+  --color-bg: #0d1117;
+  --color-text: #0f78e0;
+  --color-brand: #aafafd;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}

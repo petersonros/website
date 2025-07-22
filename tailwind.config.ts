@@ -1,3 +1,5 @@
+// tailwind.config.ts
+
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -6,15 +8,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          DEFAULT: "#0ff0fc", // azul neon tech
-          dark: "#0cdbd7",
-          light: "#aafafd",
-        },
-        background: {
-          light: "#f8fafc",
-          dark: "#0d1117", // estilo GitHub dark
-        },
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: "var(--card)",
+        border: "var(--border)",
+        primary: "var(--primary)",
+        muted: "var(--muted)",
+        "muted-foreground": "var(--muted-foreground)",
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],

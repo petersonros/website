@@ -28,10 +28,10 @@ export function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="text-[var(--color-text)] max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <Link
           href="/"
-          className="text-xl font-bold text-gray-800 dark:text-white tracking-wide hover:text-blue-500 dark:hover:text-blue-300"
+          className="text-xl font-bold tracking-wide hover:text-blue-500"
         >
           Peterson
         </Link>

@@ -1,18 +1,32 @@
 // src/types/index.ts
 
+import { ReactElement } from "react";
+import { JSXElementConstructor } from "react";
+
+export type Technology = {
+  icon: () => ReactElement;
+  name: string;
+};
+
+export type TechnologyIcon = ReactElement | JSXElementConstructor<object>;
+
+export type ProjectCardProps = {
+  id: number;
+  title: string;
+  description: string;
+  technologies: Technology[];
+  repoUrl?: string;
+  liveDemoUrl?: string;
+  link: string;
+  slug: string;
+};
+
+export type Project = ProjectCardProps;
+
 export type ShufflingTitleProps = {
   text: string;
   className?: string;
   delay?: number;
-};
-
-export type ProjectCardProps = {
-  title: string;
-  description: string;
-  imageUrl: string;
-  repoUrl?: string;
-  demoUrl?: string;
-  technologies?: string[];
 };
 
 export type SectionWrapperProps = {
@@ -20,13 +34,7 @@ export type SectionWrapperProps = {
   className?: string;
 };
 
-export type Project = {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  technologies: string[];
-  repoUrl: string;
-  liveDemoUrl: string;
+export type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
+  id?: number;
+  children: React.ReactNode;
 };
