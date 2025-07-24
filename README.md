@@ -13,7 +13,7 @@ O projeto foi planejado com foco em:
 
 - ✅ **Página Home** contendo as seções: Hero, Sobre, Projetos e Contato
 - ✅ **Seção Hero** com resumo geral
-- ✅ **Seção Sobre** com resumo das seções: Sobre, Projetos e Contato
+- ✅ **Seção Sobre** com resumo sobre mim
 - ✅ **Seção Projetos** com carrossel no mobile (Swiper.js) e grid no desktop
 - ✅ **Seção Contato** Página de contato simples com icones para redes sociais e e-mail
 - ✅ **Rodapé fixo** com ícones de redes sociais e botão "Voltar ao topo"
