@@ -1,9 +1,12 @@
 // src/components/sections/HeroSection.tsx
 "use client";
 
+import { CubeBackground } from "../CubeBackground";
+
 export function HeroSection() {
   return (
-    <section className="bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen py-32 flex flex-col justify-center items-center text-center px-4">
+    <section className=" bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen py-32 flex flex-col justify-center items-center text-center px-4">
+      <CubeBackground />
       <h1 className="text-4xl md:text-6xl font-bold  mb-4">
         Olá, eu sou Peterson
       </h1>

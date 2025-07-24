@@ -5,7 +5,7 @@ import { CardGrid } from "@/components/ui/CardGrid";
 
 export const ProjectsSection = () => {
   return (
-    <section>
+    <section id="projects">
       <CardGrid />
     </section>
   );

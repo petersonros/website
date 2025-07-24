@@ -6,20 +6,6 @@ import { Icons } from "@/components/ui/Icon";
 
 export const projects: Project[] = [
   {
-    id: 1,
-    title: "Meu Projeto Incrível",
-    description: "Um projeto feito com TypeScript, JavaScript e Next.js.",
-    technologies: [
-      { icon: Icons.Next, name: "Next.js" },
-      { icon: Icons.Tailwind, name: "JavaScript" },
-      { icon: Icons.Ts, name: "TypeScript" },
-    ],
-    repoUrl: "https://github.com/petersonros",
-    liveDemoUrl: "https://github.com/petersonros",
-    link: "/meu-projeto-incrivel",
-    slug: "meu-projeto-incrivel",
-  },
-  {
     id: 2,
     title: "Portfólio Pessoal",
     description: "Site pessoal com tema escuro/claro e layout responsivo.",
@@ -29,7 +15,7 @@ export const projects: Project[] = [
       { icon: Icons.Ts, name: "TypeScript" },
     ],
     repoUrl: "https://github.com/petersonros/website",
-    liveDemoUrl: "https://github.com/petersonros/website",
+    liveDemoUrl: "https://petersonros.github.io/website/",
     slug: "portfolio",
     link: "",
   },

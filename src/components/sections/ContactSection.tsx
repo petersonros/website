@@ -1,7 +1,7 @@
 import React from "react";
 import { FaGithub, FaInstagram } from "react-icons/fa";
 
-export default function ContactSection() {
+export function ContactSection() {
   return (
     <section
       id="contact"

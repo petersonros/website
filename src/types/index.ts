@@ -30,11 +30,12 @@ export type ShufflingTitleProps = {
 };
 
 export type SectionWrapperProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
+  id?: string;
 };
 
 export type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
-  id?: number;
+  id?: string;
   children: React.ReactNode;
 };

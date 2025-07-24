@@ -1,82 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ✨ Peterson — Portfólio Pessoal
 
-## Getting Started
+Site pessoal desenvolvido com **Next.js**, **TypeScript** e **Tailwind CSS**, onde compartilho um pouco sobre mim, meus projetos e meu aprendizado contínuo em desenvolvimento web.
 
-First, run the development server:
+O projeto foi planejado com foco em:
 
-```bash
+- Arquitetura limpa e componentes reutilizáveis
+- Experiência responsiva e agradável em qualquer dispositivo
+- Suporte a **modo claro/escuro** com persistência
+- Navegação suave por seções
+- Estrutura pronta para expansão com novas funcionalidades e conteúdos
+
+---
+
+## 📌 Funcionalidades
+
+- ✅ **Página Home** com resumo das seções: Sobre, Projetos e Contato
+- ✅ **Seção de Projetos** com carrossel no mobile (Swiper.js) e grid no desktop
+- ✅ **Rodapé fixo** com ícones de redes sociais e botão "Voltar ao topo"
+- ✅ **Botão de alternância de tema (claro/escuro)** com persistência no localStorage
+
+---
+
+## 🛠️ Tecnologias e Ferramentas
+
+- [Next.js](https://nextjs.org/) — Framework React para aplicações modernas
+- [TypeScript](https://www.typescriptlang.org/) — Tipagem estática para maior segurança
+- [Tailwind CSS](https://tailwindcss.com/) — Utilitários para estilização rápida e responsiva
+- [Swiper.js](https://swiperjs.com/react) — Carrossel poderoso para mobile
+- [React Icons](https://react-icons.github.io/react-icons/) — Ícones modernos de fácil uso
+- [Framer Motion](https://www.framer.com/motion/) — Animações fluidas em React
+
+---
+
+## 📁 Estrutura de Pastas
+
+📁 src/
+├── 📁 app/
+│   ├── 📁 about/
+│   │   └── page.tsx
+│   ├── 📁 projects/
+│   │   └── page.tsx
+│   └── layout.tsx
+│   └── page.tsx
+├── 📁 components/
+│   ├── 📁 sections/
+│   │   ├── About.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Projects.tsx
+│   ├── 📁 shared/
+│   │   ├── Footer.tsx
+│   │   ├── Header.tsx
+│   │   ├── ThemeToggle.tsx
+│   └── 📁 ui/
+│       ├── ProjectCard.tsx
+│       └── ProjectCarousel.tsx
+├── 📁 data/
+│   └── projects.ts
+├── 📁 hooks/
+│   └── useActiveSection.ts
+├── 📁 lib/
+│   └── utils.ts
+├── 📁 styles/
+│   └── globals.css
+├── tailwind.config.ts
+├── postcss.config.js
+└── tsconfig.json
+
+
+## 🚀 Como rodar localmente
+
+# Clone o repositório
+git clone https://github.com/petersonros/website.git
+
+# Acesse a pasta
+cd website
+
+# Instale as dependências
+npm install
+
+# Inicie o servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O site estará disponível em `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Deploy
 
-## Learn More
+O projeto pode ser facilmente hospedado em plataformas como **Vercel**, com suporte a exportação estática (`next export`) se necessário.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💡 Futuras melhorias
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Página de contato com formulário funcional
+* Publicação de artigos técnicos
+* Internacionalização (i18n)
+* Acessibilidade refinada (a11y)
+* Animações avançadas com Framer Motion
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👨‍💻 Autor
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Desenvolvido por **Peterson**
 
-src/
-  app/
-    about/
-      page.tsx
-    projects/
-      page.tsx
-    layout.tsx
-    page.tsx
-  assets/
-  components/
-    layout/
-      DesktopNav.tsx
-      Footer.tsx
-      Header.tsx
-      MobileNav.tsx
-      SectionWrapper.tsx
-      ThemeProvider.tsx
-    section/
-      AboutSection.tsx
-      ContactSection.tsx
-      HeroSection.tsx
-      ProjectsSection.tsx
-    ui/
-      Button.tsx
-      Card.tsx
-      CardGrid.tsx
-      Icon.tsx
-      LinkButton.tsx
-      ProjectCard.tsx
-      ShufflingText.tsx
-      ThemeToggle.tsx
-  constants/
-    sections.ts
-  data/
-    projects.ts
-  lib/
-    hooks/
-      useActiveSection.ts
-    utils/
-      scrollTo.ts
-  styles/
-    globals.css
-  types/
-    project.ts
-    section.ts
+---

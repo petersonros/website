@@ -9,3 +9,29 @@
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
+
+/* CubeBackground styles */
+.bg-gradient-glow {
+  background-image: linear-gradient(90deg, #00ffff, #0077ff, #00ffff);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 4s linear infinite;
+  filter: drop-shadow(0 0 5px #00ffff);
+}
+
+.border-gradient-glow {
+  border-image: linear-gradient(90deg, #00ffff, #0077ff, #00ffff) 1;
+  border-style: solid;
+  filter: drop-shadow(0 0 6px #00ffff);
+}
+
+/* Noise Background */
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* ou ajustável ao tema */
+  pointer-events: none;
+}

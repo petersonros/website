@@ -6,9 +6,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { User, Folder, Mail } from "lucide-react";
 
 const navItems = [
-  { href: "/#about", label: "Sobre", icon: User },
-  { href: "/#projects", label: "Projetos", icon: Folder },
-  { href: "/#contact", label: "Contato", icon: Mail },
+  { href: "#about", label: "Sobre", icon: User },
+  { href: "#projects", label: "Projetos", icon: Folder },
+  { href: "#contact", label: "Contato", icon: Mail },
 ];
 
 export function DesktopNav() {
