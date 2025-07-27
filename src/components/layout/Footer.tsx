@@ -1,3 +1,5 @@
+// src/components/layout/Footer.tsx
+
 "use client";
 
 import { Github, Instagram, ArrowUp } from "lucide-react";

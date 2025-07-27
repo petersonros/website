@@ -8,7 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "Peterson | Desenvolvedor",
+  title: "Peterson",
   description: "Website desenvolvido com Next.js, Tailwind e TypeScript",
 };
 
