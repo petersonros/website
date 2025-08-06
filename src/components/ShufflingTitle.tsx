@@ -37,7 +37,7 @@ export function ShufflingTitle({ text, className, delay = 50 }: ShufflingTitlePr
     setIntervalId(newInterval);
 
     return () => clearInterval(newInterval);
-  }, [text, delay]);
+  }, [text, delay, intervalId]);
 
   return <h2 className={className}>{displayed}</h2>;
 }

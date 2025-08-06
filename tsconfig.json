@@ -34,7 +34,7 @@
     ".next/types/**/*.ts",
     "next-env.d.ts",
     "out/types/**/*.ts"
-  ],
+, "src/app/posts/[id]/page.js", "src/app/posts/page.js"  ],
   "exclude": [
     "node_modules"
   ]
