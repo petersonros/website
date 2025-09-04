@@ -8,9 +8,24 @@ import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Peterson",
-  description: "Website desenvolvido com Next.js, Tailwind e TypeScript",
+  metadataBase: new URL(siteUrl),
+  title: { default: "Peterson — Desenvolvedor", template: "%s | Peterson" },
+  description: "Portfólio, projetos e aprendizados em Next.js/TypeScript.",
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    title: "Peterson — Desenvolvedor",
+    description: "Portfólio, projetos e aprendizados.",
+    siteName: "Peterson",
+    images: [
+      { url: "/og.png", width: 1200, height: 630, alt: "Peterson — Portfólio" },
+    ],
+  },
+  robots: { index: true, follow: true },
+  alternates: { canonical: siteUrl },
 };
 
 export default function RootLayout({

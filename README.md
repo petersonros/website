@@ -58,5 +58,4 @@ O site estará disponível em `http://localhost:3000`.
 * Animações avançadas com Framer Motion
 
 ## 👨‍💻 Autor
-Desenvolvido por **Peterson**
-
+Desenvolvido por **Peterson** 💻 com apoio de **Orion** 🚀
