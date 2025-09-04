@@ -1,10 +1,21 @@
 export default function Contato() {
   return (
     <main className="max-w-lg mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6">Contato</h1>
+      <iframe
+        src="/contact.php?warmup=1"
+        title="warmup"
+        style={{
+          position: "absolute",
+          left: -9999,
+          width: 0,
+          height: 0,
+          border: 0,
+        }}
+        aria-hidden="true"
+      />
 
+      <h1 className="text-3xl font-bold mb-6">Contato</h1>
       <form action="/contact.php" method="POST" className="space-y-4">
-        {/* Honeypot para bots */}
         <input
           type="text"
           name="hp"
@@ -32,6 +43,7 @@ export default function Contato() {
           className="w-full border p-3 rounded min-h-[140px]"
           required
         />
+
         <button className="px-4 py-2 rounded bg-black text-white dark:bg-white dark:text-black">
           Enviar
         </button>
