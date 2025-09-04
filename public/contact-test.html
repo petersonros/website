@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <title>Teste de contato</title>
+  </head>
+  <body>
+    <iframe src="/contact.php?warmup=1" title="warmup" style="position:absolute;left:-9999px;width:0;height:0;border:0" aria-hidden="true"></iframe>
+
+    <h1>Teste de contato</h1>
+    <form action="/contact.php" method="POST">
+      <input type="text" name="hp" style="display:none" tabindex="-1" autocomplete="off" />
+      <div><label>Nome: <input name="name" required></label></div>
+      <div><label>E-mail: <input name="_replyto" type="email" required></label></div>
+      <div><label>Mensagem:<br><textarea name="message" rows="6" cols="50" required></textarea></label></div>
+      <button type="submit">Enviar</button>
+    </form>
+  </body>
+</html>
