@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ToastProvider } from "@/components/Toast";
 import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
@@ -36,11 +37,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="dark" suppressHydrationWarning>
       <body className={`${inter.className} flex min-h-screen flex-col`}>
-        <ThemeProvider>
-          <Header />
-          <main className="flex-grow">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <ToastProvider>
+          <ThemeProvider>
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </ToastProvider>
       </body>
     </html>
   );

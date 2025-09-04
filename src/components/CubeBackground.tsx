@@ -1,65 +1,90 @@
-// src/components/CubeBackground.tsx
-"use client";
-import { useRef, useEffect } from "react";
-import * as THREE from "three";
+'use client';
 
-export function CubeBackground() {
-  const mountRef = useRef<HTMLDivElement>(null);
+import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
+
+export function CubeBackground({ className }: { className?: string }) {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
-    const mount = mountRef.current!;
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    mount.appendChild(renderer.domElement);
+    const host = hostRef.current;
+    if (!host) return;
 
-    const geometry = new THREE.BoxGeometry(3, 3, 3);
-    const material = new THREE.MeshBasicMaterial({
-      color: "#00ffff",
-      wireframe: true,
-      transparent: true,
-      opacity: 0.05,
-    });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    const test = document.createElement('canvas');
+    const gl = test.getContext('webgl') || (test.getContext('experimental-webgl') as any);
+    if (!gl) return;
 
-    camera.position.z = 5;
+    if (rendererRef.current) return;
 
-    const clock = new THREE.Clock();
+    try {
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'low-power',
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio ?? 1, 2));
+      renderer.setSize(host.clientWidth, host.clientHeight, false);
+      host.appendChild(renderer.domElement);
+      rendererRef.current = renderer;
 
-    const animate = () => {
-      const t = clock.getElapsedTime();
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        host.clientWidth / host.clientHeight,
+        0.1,
+        100
+      );
+      camera.position.z = 5;
 
-      // Rotação contínua e orgânica
-      cube.rotation.x = Math.sin(t * 0.3) * 1.5;
-      cube.rotation.y = Math.sin(t * 0.5) * 1.5;
-      cube.rotation.z = Math.cos(t * 0.4) * 1.5;
+      const mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(1.4, 1.4, 1.4),
+        new THREE.MeshBasicMaterial({ color: 0x7aa2ff, wireframe: true })
+      );
+      scene.add(mesh);
 
-      renderer.render(scene, camera);
-      requestAnimationFrame(animate);
-    };
+      const onResize = () => {
+        const w = host.clientWidth, h = host.clientHeight;
+        renderer.setSize(w, h, false);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+      };
+      window.addEventListener('resize', onResize);
 
-    animate();
+      const loop = () => {
+        rafRef.current = requestAnimationFrame(loop);
+        mesh.rotation.x += 0.003;
+        mesh.rotation.y += 0.004;
+        renderer.render(scene, camera);
+      };
+      loop();
 
-    const handleResize = () => {
-      camera.aspect = mount.clientWidth / mount.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(mount.clientWidth, mount.clientHeight);
-    };
-    window.addEventListener("resize", handleResize);
+      const canvas = renderer.domElement;
+      const stop = (e: Event) => { e.preventDefault(); cancelAnimationFrame(rafRef.current); };
+      canvas.addEventListener('webglcontextlost', stop as any, { passive: false });
+      canvas.addEventListener('webglcontextcreationerror', stop as any, { passive: false });
 
-    return () => {
-      mount.removeChild(renderer.domElement);
-      window.removeEventListener("resize", handleResize);
-    };
+      return () => {
+        cancelAnimationFrame(rafRef.current);
+        window.removeEventListener('resize', onResize);
+        canvas.removeEventListener('webglcontextlost', stop as any);
+        canvas.removeEventListener('webglcontextcreationerror', stop as any);
+        renderer.dispose();
+        rendererRef.current = null;
+        while (host.firstChild) host.removeChild(host.firstChild);
+      };
+    } catch {
+      /* fallback silencioso */
+    }
   }, []);
 
   return (
     <div
-      ref={mountRef}
-      className="absolute inset-0 z-0 pointer-events-none"
+      ref={hostRef}
+      className={`absolute inset-0 z-0 pointer-events-none ${className ?? ''}`}
     />
   );
 }
+
+export default CubeBackground;
