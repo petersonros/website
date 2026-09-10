@@ -1,30 +1,49 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-// Função para buscar todos os posts (só IDs!)
+const API_URL = "https://admin.petersonros.com/api_texto.php";
+
+// Só as rotas geradas por generateStaticParams existem no export estático.
+export const dynamicParams = false;
+
 async function getAllPostIds() {
-  const res = await fetch("https://admin.petersonros.com/api_texto.php", { cache: "force-cache" });
-  const data = await res.json();
-  return (data.textos ?? []).map((post) => ({ id: post.id.toString() }));
+  try {
+    const res = await fetch(API_URL, { cache: "force-cache" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return (data?.textos ?? []).map((post) => ({ id: String(post.id) }));
+  } catch {
+    return [];
+  }
 }
 
-// OBRIGATÓRIO para SSG/Export!
+// `output: export` exige pelo menos uma rota. Se a API estiver fora no build,
+// geramos um placeholder que apenas renderiza o 404.
+const NONE = "__none__";
+
 export async function generateStaticParams() {
-  return await getAllPostIds();
+  const ids = await getAllPostIds();
+  return ids.length ? ids : [{ id: NONE }];
 }
 
-// Função para buscar o post pelo ID
 async function getPost(id) {
-  const res = await fetch(`https://admin.petersonros.com/api_texto.php?id=${id}`, { cache: "force-cache" });
-  const data = await res.json();
-  // Atenção: sua API precisa retornar { success: true, post: {...} }
-  return data.post ?? null;
+  try {
+    const res = await fetch(`${API_URL}?id=${encodeURIComponent(id)}`, {
+      cache: "force-cache",
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data?.post ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export default async function PostPage({ params }) {
-  const { id } = params;
-  const post = await getPost(id);
+  const { id } = await params;
+  if (id === NONE) return notFound();
 
+  const post = await getPost(id);
   if (!post) return notFound();
 
   return (

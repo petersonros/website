@@ -1,12 +1,17 @@
 import Link from "next/link";
 
-// Função para buscar posts (fetch com cache estático)
+const API_URL = "https://admin.petersonros.com/api_texto.php";
+
+// Busca a lista de posts. Nunca lança: se a API estiver fora, o build segue.
 async function getPosts() {
-  const res = await fetch("https://admin.petersonros.com/api_texto.php", { cache: "force-cache" });
-  if (!res.ok) return [];
-  const data = await res.json();
-  // Retorno esperado: data.textos (ajuste se sua API retornar com outro nome)
-  return data?.textos ?? [];
+  try {
+    const res = await fetch(API_URL, { cache: "force-cache" });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data?.textos ?? [];
+  } catch {
+    return [];
+  }
 }
 
 export default async function PostsPage() {

@@ -1,12 +1,7 @@
 // src/app/page.tsx
-"use client";
-
-import "@/styles/globals.css";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
-// import { ContactSection } from "@/components/sections/ContactSection";
-import ContactSection from "@/components/ContactSection";
 
 export default function HomePage() {
   return (
@@ -14,7 +9,6 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <ProjectsSection />
-      <ContactSection />
     </>
   );
 }
