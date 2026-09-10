@@ -1,14 +1,17 @@
 import type { NextConfig } from "next";
 
-const repo = "website";
-const isGhPages = process.env.GITHUB_PAGES === "true";
+/**
+ * Publicação exclusiva no GitHub Pages: https://petersonros.github.io/website/
+ * O site vive sob o subpath /website, então basePath/assetPrefix são fixos.
+ */
+const basePath = "/website";
 
 const nextConfig: NextConfig = {
   output: "export", // gera HTML estático em /out
-  images: { unoptimized: true }, // next/image sem otimização server-side
-  basePath: isGhPages ? `/${repo}` : undefined,
-  assetPrefix: isGhPages ? `/${repo}/` : undefined,
-  trailingSlash: true, // gera .../index.html (amistoso com Apache/HostGator)
+  images: { unoptimized: true }, // sem otimização server-side (Pages é estático)
+  basePath,
+  assetPrefix: `${basePath}/`,
+  trailingSlash: true, // gera .../index.html
 };
 
 export default nextConfig;

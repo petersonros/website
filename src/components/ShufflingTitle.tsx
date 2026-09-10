@@ -5,40 +5,39 @@
 import { useEffect, useState } from "react";
 import type { ShufflingTitleProps } from "@/types";
 
+const CHARS = "!@#$%¨&*()_+-=[]{}|;:'\",.<>?/~`";
 
-export function ShufflingTitle({ text, className, delay = 50 }: ShufflingTitleProps) {
+export function ShufflingTitle({
+  text,
+  className,
+  delay = 50,
+}: ShufflingTitleProps) {
   const [displayed, setDisplayed] = useState(text);
-  const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (intervalId) clearInterval(intervalId);
-
-    const chars = "!@#$%¨&*()_+-=[]{}|;:'\",.<>?/~`";
     let iteration = 0;
 
-    const newInterval = setInterval(() => {
-      setDisplayed((prev) =>
-        prev
+    const id = setInterval(() => {
+      setDisplayed(
+        text
           .split("")
-          .map((_, i) => {
-            if (i < iteration) return text[i];
-            return chars[Math.floor(Math.random() * chars.length)];
-          })
+          .map((char, i) =>
+            i < iteration
+              ? char
+              : CHARS[Math.floor(Math.random() * CHARS.length)]
+          )
           .join("")
       );
 
-      iteration += 1 / 2;
+      iteration += 0.5;
       if (iteration >= text.length) {
-        clearInterval(newInterval);
+        clearInterval(id);
         setDisplayed(text);
       }
     }, delay);
 
-    setIntervalId(newInterval);
-
-    return () => clearInterval(newInterval);
-  }, [text, delay, intervalId]);
+    return () => clearInterval(id);
+  }, [text, delay]);
 
   return <h2 className={className}>{displayed}</h2>;
 }
-

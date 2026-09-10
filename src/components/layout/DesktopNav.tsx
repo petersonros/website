@@ -5,12 +5,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { User, Folder, Mail } from "lucide-react";
+import { User, Folder } from "lucide-react";
 
 const navItems = [
   { href: "/#about", label: "Sobre", icon: User },
   { href: "/#projects", label: "Projetos", icon: Folder },
-  { href: "/#contact", label: "Contato", icon: Mail },
 ];
 
 export function DesktopNav() {

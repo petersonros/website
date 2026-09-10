@@ -19,7 +19,6 @@
 
 # production
 /build
-.htaccess
 
 # misc
 .DS_Store
@@ -34,14 +33,6 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-.env.deploy
-.env.local
-.env.production
-.env.development
-/scripts/ftp-deploy.js
-
-# vercel
-.vercel
 
 # typescript
 *.tsbuildinfo
