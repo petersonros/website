@@ -1,16 +1,12 @@
 import type { NextConfig } from "next";
 
 /**
- * Publicação exclusiva no GitHub Pages: https://petersonros.github.io/website/
- * O site vive sob o subpath /website, então basePath/assetPrefix são fixos.
+ * Publicado em domínio próprio (https://petersonros.com) via GitHub Pages
+ * (ver public/CNAME) — o site é servido na raiz, sem basePath/assetPrefix.
  */
-const basePath = "/website";
-
 const nextConfig: NextConfig = {
   output: "export", // gera HTML estático em /out
   images: { unoptimized: true }, // sem otimização server-side (Pages é estático)
-  basePath,
-  assetPrefix: `${basePath}/`,
   trailingSlash: true, // gera .../index.html
   // Permite acessar `next dev` pelo IP da rede local (ex: testar no celular).
   // Sem isso, o Next bloqueia requisições cross-origin do HMR e a página
