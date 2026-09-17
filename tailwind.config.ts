@@ -13,6 +13,7 @@ const config: Config = {
         card: "var(--card)",
         border: "var(--border)",
         primary: "var(--primary)",
+        "primary-foreground": "var(--primary-foreground)",
         muted: "var(--muted)",
         "muted-foreground": "var(--muted-foreground)",
         "glow-start": "#00ffff", // CubeBackground

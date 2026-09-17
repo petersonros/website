@@ -20,7 +20,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+      className="p-2 rounded-full hover:bg-muted transition"
       aria-label="Alternar tema"
     >
       {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}

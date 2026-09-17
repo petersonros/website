@@ -26,14 +26,14 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all backdrop-blur-sm ${
         isScrolled
-          ? "bg-white/80 dark:bg-gray-900/80 shadow-md"
+          ? "bg-background/80 border-b border-border"
           : "bg-transparent"
       }`}
     >
-      <div className="text-[var(--color-text)] max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="text-foreground max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <Link
           href="/"
-          className="text-xl font-bold tracking-wide hover:text-blue-500"
+          className="text-xl font-bold tracking-wide hover:text-primary transition-colors"
         >
           Peterson
         </Link>
@@ -44,7 +44,7 @@ export function Header() {
           <ThemeToggle />
           <button
             onClick={toggleMenu}
-            className="p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+            className="p-2 rounded hover:bg-muted transition"
             aria-label="Abrir menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}

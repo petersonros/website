@@ -13,7 +13,7 @@ const BG = dynamic(
 export function HeroSection() {
   return (
     <section
-      className="relative overflow-hidden bg-[var(--color-bg)] text-[var(--color-text)]
+      className="relative overflow-hidden bg-background text-foreground
                  min-h-screen py-32 flex flex-col items-center justify-center text-center px-4"
     >
       <BG className="opacity-30" />
@@ -21,7 +21,7 @@ export function HeroSection() {
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           Olá, eu sou Peterson
         </h1>
-        <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
           Técnico em informática e estudante de{" "}
           <strong>Análise e Desenvolvimento de Sistemas</strong>.
         </p>

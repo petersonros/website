@@ -13,8 +13,8 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   technologies,
 }) => {
   return (
-    <div className="w-full max-w-sm rborder bg-[var(--color-bg)] text-[var(--color-text)] bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-transform md:hover:-translate-y-1 duration-300 md:hover:scale-[1.015] hover:shadow-md hover:border-white/80 hover:bg-white/5 dark:hover:border-zinc-300/60 dark:hover:bg-zinc-800/30 group relative p-0.5 rounded-xl bg-gradient-to-r from-gray-500 via-purple-300 to-gray-300 shadow-lg">
-      <div className="bg-white dark:bg-zinc-900 rounded-2xl shadow-md overflow-hidden flex flex-col h-[260px] sm:h-[260px] p-4">
+    <div className="group w-full max-w-sm rounded-2xl border border-border bg-card text-foreground shadow-sm transition-all duration-300 md:hover:-translate-y-1 hover:shadow-lg hover:border-primary/40">
+      <div className="rounded-2xl overflow-hidden flex flex-col h-[260px] sm:h-[260px] p-4">
         <div className="flex-shrink-0">
           {technologies && (
             <div className="flex flex-wrap gap-3 sm:gap-4 mb-4 pt-2">
@@ -41,7 +41,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
             {liveDemoUrl && (
               <a
                 href={liveDemoUrl}
-                className="text-gray-300 hover:text-white hover:scale-110 text-2xl sm:text-3xl transition-all duration-200 cursor-pointer"
+                className="text-muted-foreground hover:text-primary hover:scale-110 text-2xl sm:text-3xl transition-all duration-200 cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
                 title="Ver demo ao vivo"
@@ -52,7 +52,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
             {repoUrl && (
               <a
                 href={repoUrl}
-                className="text-gray-300 hover:text-white hover:scale-110 text-2xl sm:text-3xl transition-all duration-200 cursor-pointer"
+                className="text-muted-foreground hover:text-primary hover:scale-110 text-2xl sm:text-3xl transition-all duration-200 cursor-pointer"
                 target="_blank"
                 rel="noreferrer"
                 title="Ver repositório"

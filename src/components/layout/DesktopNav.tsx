@@ -16,13 +16,13 @@ export function DesktopNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden md:flex items-center gap-6 text-gray-800 dark:text-gray-200 font-medium">
+    <nav className="hidden md:flex items-center gap-6 text-muted-foreground font-medium">
       {navItems.map(({ href, label, icon: Icon }) => (
         <Link
           key={href}
           href={href}
-          className={`transition-colors tracking-wide hover:text-blue-500 dark:hover:text-blue-300 ${
-            pathname === href ? "text-blue-600 dark:text-blue-400 font-semibold" : ""
+          className={`transition-colors tracking-wide hover:text-primary ${
+            pathname === href ? "text-primary font-semibold" : ""
           }`}
         >
           <Icon className="inline-block mr-1" size={18} />

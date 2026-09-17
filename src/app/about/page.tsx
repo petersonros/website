@@ -11,7 +11,7 @@ export default function AboutPage() {
       <div className="max-w-3xl mx-auto space-y-6">
         <ShufflingTitle
           text="Sobre Mim"
-          className="text-3xl font-bold tracking-tight text-blue-600 dark:text-blue-400"
+          className="text-3xl font-bold tracking-tight text-primary"
         />
 
         <p className="text-lg leading-relaxed">
@@ -48,7 +48,7 @@ export default function AboutPage() {
         <div className="pt-4">
           <Link
             href="/"
-            className="inline-block px-4 py-2 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded transition"
+            className="inline-block px-4 py-2 text-sm font-semibold text-primary-foreground bg-primary hover:opacity-90 rounded transition-opacity"
           >
             ← Voltar à Home
           </Link>

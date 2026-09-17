@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
   basePath,
   assetPrefix: `${basePath}/`,
   trailingSlash: true, // gera .../index.html
+  // Permite acessar `next dev` pelo IP da rede local (ex: testar no celular).
+  // Sem isso, o Next bloqueia requisições cross-origin do HMR e a página
+  // fica parcialmente sem interatividade no dispositivo remoto.
+  allowedDevOrigins: ["192.168.0.59"],
 };
 
 export default nextConfig;

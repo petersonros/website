@@ -19,15 +19,15 @@ export function MobileNav({ closeMenu }: Props) {
   const pathname = usePathname();
 
   return (
-    <nav className="md:hidden bg-white dark:bg-gray-900 px-4 pb-4 pt-2 text-gray-800 dark:text-gray-200">
+    <nav className="md:hidden bg-background border-t border-border px-4 pb-4 pt-2 text-muted-foreground">
       <ul className="flex flex-col gap-4 text-lg font-medium">
         {navItems.map(({ href, label, icon: Icon }) => (
           <li key={href}>
             <Link
               href={href}
               onClick={closeMenu}
-              className={`hover:text-blue-500 dark:hover:text-blue-400 ${
-                pathname === href ? "text-blue-600 dark:text-blue-400 font-semibold" : ""
+              className={`transition-colors hover:text-primary ${
+                pathname === href ? "text-primary font-semibold" : ""
               }`}
             >
               <Icon className="inline-block mr-2" size={20} />

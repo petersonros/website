@@ -40,7 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className="dark" suppressHydrationWarning>
-      <body className={`${inter.className} flex min-h-screen flex-col`}>
+      <body className={`${inter.className} flex min-h-screen flex-col bg-background text-foreground`}>
         <ThemeProvider>
           <Header />
           <main className="flex-grow">{children}</main>

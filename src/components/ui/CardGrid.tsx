@@ -40,7 +40,7 @@ export const CardGrid = () => {
   };
 
   return (
-    <section className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] py-16 px-4 sm:px-6 md:px-2 lg:px-2">
+    <section className="min-h-screen bg-background text-foreground py-16 px-4 sm:px-6 md:px-2 lg:px-2">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-4xl font-bold py-16">Projetos</h2>
         <div className="block md:hidden">
@@ -51,7 +51,7 @@ export const CardGrid = () => {
           {showLeftButton && (
             <button
               onClick={() => scrollTo("left")}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 shadow-lg rounded-full p-3 hover:shadow-xl transition-all duration-200 border border-gray-200 dark:border-gray-700"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-card shadow-lg rounded-full p-3 hover:shadow-xl transition-all duration-200 border border-border"
               aria-label="Ver projetos anteriores"
             >
               <svg
@@ -60,7 +60,7 @@ export const CardGrid = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-5 h-5 text-gray-600 dark:text-gray-300"
+                className="w-5 h-5 text-muted-foreground"
               >
                 <path
                   strokeLinecap="round"
@@ -73,7 +73,7 @@ export const CardGrid = () => {
           {showRightButton && (
             <button
               onClick={() => scrollTo("right")}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white dark:bg-gray-800 shadow-lg rounded-full p-3 hover:shadow-xl transition-all duration-200 border border-gray-200 dark:border-gray-700"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-card shadow-lg rounded-full p-3 hover:shadow-xl transition-all duration-200 border border-border"
               aria-label="Ver próximos projetos"
             >
               <svg
@@ -82,7 +82,7 @@ export const CardGrid = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={2}
                 stroke="currentColor"
-                className="w-5 h-5 text-gray-600 dark:text-gray-300"
+                className="w-5 h-5 text-muted-foreground"
               >
                 <path
                   strokeLinecap="round"
@@ -132,7 +132,7 @@ export const CardGrid = () => {
               (_, index) => (
                 <div
                   key={index}
-                  className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-600 transition-colors duration-200"
+                  className="w-2 h-2 rounded-full bg-border transition-colors duration-200"
                 />
               )
             )}

@@ -5,10 +5,10 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="flex items-center justify-center px-4 py-20 min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-100"
+      className="flex items-center justify-center px-4 py-20 min-h-screen bg-background text-foreground"
     >
       <div className="max-w-3xl mx-auto space-y-6">
-        <h1 className="text-4xl md:text-6xl font-bold text-[var(--color-text)] mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4">
           Sobre mim
         </h1>
         <p className="text-lg leading-relaxed">

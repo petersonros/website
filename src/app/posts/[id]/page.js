@@ -47,16 +47,18 @@ export default async function PostPage({ params }) {
   if (!post) return notFound();
 
   return (
-    <main className="max-w-2xl mx-auto mt-10 p-4 border rounded-xl shadow bg-black">
-      <h1 className="text-3xl font-bold mb-2">{post.titulo}</h1>
-      <div className="text-sm text-gray-400 mb-2">
-        {post.criado_em} | {post.autor}
+    <main className="max-w-2xl mx-auto mt-10 pt-20 p-4 min-h-screen bg-background text-foreground">
+      <div className="border border-border rounded-xl shadow-sm bg-card p-6">
+        <h1 className="text-3xl font-bold mb-2">{post.titulo}</h1>
+        <div className="text-sm text-muted-foreground mb-2">
+          {post.criado_em} | {post.autor}
+        </div>
+        <div className="mb-6 text-muted-foreground">{post.resumo}</div>
+        <div className="text-lg">{post.conteudo}</div>
+        <Link href="/posts" className="mt-8 inline-block text-primary hover:underline">
+          ← Voltar para lista de posts
+        </Link>
       </div>
-      <div className="mb-6 text-gray-300">{post.resumo}</div>
-      <div className="text-lg">{post.conteudo}</div>
-      <Link href="/posts" className="mt-8 inline-block text-blue-400 underline">
-        ← Voltar para lista de posts
-      </Link>
     </main>
   );
 }

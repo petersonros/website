@@ -4,7 +4,7 @@ export const LinkButton: FC<{ href: string; children: React.ReactNode }> = ({ hr
   return (
     <a
       href={href}
-      className="inline-block rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 transition-colors"
+      className="inline-block rounded bg-primary px-4 py-2 text-primary-foreground hover:opacity-90 transition-opacity"
       target="_blank"
       rel="noopener noreferrer"
     >

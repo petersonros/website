@@ -9,7 +9,7 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <footer className="fixed bottom-0 left-0 w-full z-40 bg-white/80 dark:bg-gray-900/80 text-center py-2 text-sm text-gray-600 dark:text-gray-300 shadow-inner backdrop-blur-sm">
+    <footer className="mt-auto border-t border-border bg-background text-center py-4 text-sm text-muted-foreground">
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
         <span>&copy; {new Date().getFullYear()} Peterson</span>
         <div className="flex gap-4">
@@ -18,7 +18,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hover:text-blue-500"
+            className="hover:text-primary transition-colors"
           >
             <Github size={20} />
           </a>
@@ -27,13 +27,13 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="hover:text-pink-500"
+            className="hover:text-primary transition-colors"
           >
             <Instagram size={20} />
           </a>
           <button
             onClick={scrollToTop}
-            className="hover:text-blue-600 transition"
+            className="hover:text-primary transition-colors"
             aria-label="Voltar ao topo"
           >
             <ArrowUp size={20} />

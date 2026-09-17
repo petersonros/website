@@ -1,21 +1,23 @@
 /* src/styles/variables.css */
 
 :root {
-  --color-bg: #f8fafc;
-  --color-text: #0d1117;
-  --color-brand: #1a010b;
+  --background: #f7f8fa;
+  --foreground: #1c1f26;
+  --card: #ffffff;
+  --border: #e3e6eb;
+  --primary: #3b6fe0;
+  --primary-foreground: #ffffff;
+  --muted: #eef1f5;
+  --muted-foreground: #5b6472;
 }
 
 .dark {
-  --color-bg: #0d1117;
-  --color-text: #0f78e0;
-  --color-brand: #aafafd;
-}
-
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0b0d12;
+  --foreground: #e6e8ec;
+  --card: #12151b;
+  --border: #242832;
+  --primary: #6ea8fe;
+  --primary-foreground: #0b0d12;
+  --muted: #171a21;
+  --muted-foreground: #98a1b3;
 }
