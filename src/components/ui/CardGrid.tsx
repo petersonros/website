@@ -42,7 +42,7 @@ export const CardGrid = () => {
   return (
     <section className="min-h-screen bg-background text-foreground py-16 px-4 sm:px-6 md:px-2 lg:px-2">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-4xl font-bold py-16">Projetos</h2>
+        <h2 className="text-4xl font-bold py-16">Portfólio</h2>
         <div className="block md:hidden">
           <ProjectCarousel />
         </div>

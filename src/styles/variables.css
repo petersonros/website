@@ -1,23 +1,16 @@
 /* src/styles/variables.css */
 
+/*
+ * Paleta fixa "prancheta técnica" (CONTEXTO §10) — sem modo claro/escuro
+ * alternável, o design aprovado é um único tema cianotipo escuro.
+ */
 :root {
-  --background: #f7f8fa;
-  --foreground: #1c1f26;
-  --card: #ffffff;
-  --border: #e3e6eb;
-  --primary: #3b6fe0;
-  --primary-foreground: #ffffff;
-  --muted: #eef1f5;
-  --muted-foreground: #5b6472;
-}
-
-.dark {
-  --background: #0b0d12;
-  --foreground: #e6e8ec;
-  --card: #12151b;
-  --border: #242832;
-  --primary: #6ea8fe;
-  --primary-foreground: #0b0d12;
-  --muted: #171a21;
-  --muted-foreground: #98a1b3;
+  --background: #0f2b47;
+  --foreground: #eaf2f8;
+  --card: #0b2138;
+  --border: #1c3a57;
+  --primary: #e3a857;
+  --primary-foreground: #0f2b47;
+  --muted: #14304c;
+  --muted-foreground: #9fb4c7;
 }

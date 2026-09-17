@@ -31,7 +31,7 @@ export const Icons = {
   Css: () => <SiCss3 className="text-blue-500" />,
   Js: () => <SiJavascript className="text-yellow-400" />,
   Ts: () => <SiTypescript className="text-blue-600" />,
-  Next: () => <SiNextdotjs className="text-black dark:text-white" />,
+  Next: () => <SiNextdotjs className="text-white" />,
   Tailwind: () => <SiTailwindcss className="text-sky-400" />,
   Php: () => <SiPhp className="text-indigo-500" />,
   Bootstrap: () => <SiBootstrap className="text-purple-600" />,

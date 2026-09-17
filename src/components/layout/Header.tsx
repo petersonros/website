@@ -7,7 +7,6 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { DesktopNav } from "./DesktopNav";
 import { MobileNav } from "./MobileNav";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,15 +32,14 @@ export function Header() {
       <div className="text-foreground max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         <Link
           href="/"
-          className="text-xl font-bold tracking-wide hover:text-primary transition-colors"
+          className="font-mono text-xl font-bold tracking-wide hover:text-primary transition-colors"
         >
           Peterson
         </Link>
 
         <DesktopNav />
 
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+        <div className="lg:hidden flex items-center gap-2">
           <button
             onClick={toggleMenu}
             className="p-2 rounded hover:bg-muted transition"

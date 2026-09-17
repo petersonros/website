@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 /**
  * Publicado em domínio próprio (https://petersonros.com) via GitHub Pages
@@ -14,4 +15,14 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["192.168.0.59"],
 };
 
-export default nextConfig;
+// Conteúdo MDX vive em src/content/ e é importado dinamicamente pelas rotas
+// [slug] (não usado como page.mdx), então pageExtensions não precisa mudar.
+// remark-frontmatter (passado por nome, não por import) faz o compilador MDX
+// ignorar o bloco `---` que o gray-matter usa para extrair title/summary/date
+// de cada arquivo — plugins com opções não serializáveis (funções JS) não
+// funcionam com o Turbopack, que exige nomes de string.
+const withMDX = createMDX({
+  options: { remarkPlugins: ["remark-frontmatter"] },
+});
+
+export default withMDX(nextConfig);

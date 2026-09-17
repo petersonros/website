@@ -11,7 +11,7 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-background text-center py-4 text-sm text-muted-foreground">
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-        <span>&copy; {new Date().getFullYear()} Peterson</span>
+        <span className="font-mono">&copy; {new Date().getFullYear()} Peterson</span>
         <div className="flex gap-4">
           <a
             href="https://github.com/petersonros"

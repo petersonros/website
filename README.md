@@ -1,30 +1,32 @@
-# ✨ Peterson — Portfólio Pessoal
-Site pessoal desenvolvido com **Next.js**, **TypeScript** e **Tailwind CSS**, onde compartilho um pouco sobre mim, meus projetos e meu aprendizado contínuo em desenvolvimento web.
+# ✨ Peterson — Site Pessoal
+Site pessoal desenvolvido com **Next.js**, **TypeScript** e **Tailwind CSS**: portfólio, formação em Análise e Desenvolvimento de Sistemas, tutoriais técnicos e material de Scratch usado em sala de aula.
 
 O projeto foi planejado com foco em:
 
 - Arquitetura limpa e componentes reutilizáveis
 - Experiência responsiva e agradável em qualquer dispositivo
-- Suporte a **modo claro/escuro** com persistência
-- Navegação suave por seções
+- Sistema de design próprio (paleta cianotipo + acento âmbar, Space Grotesk + IBM Plex Mono)
+- Conteúdo local em MDX, versionado no próprio repositório — sem backend
 - Estrutura pronta para expansão com novas funcionalidades e conteúdos
 
-## 📌 Funcionalidades
+## 📌 Seções
 
-- ✅ **Página Home** contendo as seções: Hero, Sobre e Projetos
-- ✅ **Seção Hero** com resumo geral
-- ✅ **Seção Sobre** com resumo sobre mim
-- ✅ **Seção Projetos** com carrossel no mobile (Swiper.js) e grid no desktop
+- ✅ **Início** — Hero com painel `sobre.yaml` estilo editor de código e destaques do portfólio
+- ✅ **Sobre** (`/sobre`) — trajetória pessoal e profissional
+- ✅ **Formação** (`/formacao`) — curso de ADS e trabalhos de extensão
+- ✅ **Portfólio** (`/projetos`) — projetos reais, com carrossel no mobile (Swiper.js) e grid no desktop
+- ✅ **Tutoriais** (`/tutoriais`) — posts técnicos em MDX (git, deploy, organização de projetos)
+- ✅ **Scratch** (`/scratch`) — material testado em sala de aula, cards em formato de peça Scratch
 - ✅ **Rodapé fixo** com ícones de redes sociais e botão "Voltar ao topo"
-- ✅ **Botão de alternância de tema (claro/escuro)** com persistência no localStorage
 
 ## 🛠️ Tecnologias e Ferramentas
 
 - [Next.js](https://nextjs.org/) — Framework React para aplicações modernas
 - [TypeScript](https://www.typescriptlang.org/) — Tipagem estática para maior segurança
 - [Tailwind CSS](https://tailwindcss.com/) — Utilitários para estilização rápida e responsiva
+- [@next/mdx](https://www.npmjs.com/package/@next/mdx) + [gray-matter](https://www.npmjs.com/package/gray-matter) — conteúdo local em MDX com frontmatter
 - [Swiper.js](https://swiperjs.com/react) — Carrossel poderoso para mobile
-- [React Icons](https://react-icons.github.io/react-icons/) — Ícones modernos de fácil uso
+- [React Icons](https://react-icons.github.io/react-icons/) / [Lucide](https://lucide.dev/) — Ícones
 - [Three.js](https://threejs.org/) — Plano de fundo animado (cubo) da seção Hero
 
 ## 🚀 Como rodar localmente
@@ -46,20 +48,22 @@ Inicie o servidor de desenvolvimento
 npm run dev
 ```
 
-O site usa `basePath: /website` (mesmo caminho do GitHub Pages), então em
-desenvolvimento ele fica em `http://localhost:3000/website`.
+O site fica em `http://localhost:3000`.
+
+### Adicionando conteúdo (Tutoriais / Scratch)
+
+Cada post é um arquivo `.mdx` em `src/content/tutoriais/` ou `src/content/scratch/`, com frontmatter `title`, `summary`, `date`, `status` (`em-breve` | `publicado`) e, para Scratch, `category` (`movement` | `control` | `operators`). Publicar um post novo = adicionar o arquivo e commitar.
 
 ## 🌐 Deploy
 
-O site é publicado **exclusivamente no GitHub Pages**, em
-`https://petersonros.github.io/website/`.
+O site é publicado **exclusivamente no GitHub Pages**, no domínio próprio `https://petersonros.com`.
 
 O deploy é automático: a cada `push` na branch `main`, o workflow
 `.github/workflows/deploy.yml` roda `next build` (export estático em `out/`) e
 publica via GitHub Pages.
 
-Pré-requisito único: em **Settings → Pages**, definir _Source_ como
-**GitHub Actions**.
+Pré-requisitos: em **Settings → Pages**, definir _Source_ como
+**GitHub Actions** e o campo **Custom domain** como `petersonros.com`.
 
 Para gerar o build estático localmente:
 
@@ -70,10 +74,9 @@ npm run build     # gera out/
 ## 💡 Futuras melhorias
 
 * Seção/página de contato (formulário via serviço externo ou mailto)
-* Publicação de artigos técnicos
+* Conteúdo completo das seções Tutoriais/Scratch/Formação (hoje com resumos "em breve")
 * Internacionalização (i18n)
 * Acessibilidade refinada (a11y)
-* Metadados de SEO por página
 
 ## 👨‍💻 Autor
 Desenvolvido por **Peterson** 💻 com apoio de **Orion** 🚀

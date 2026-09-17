@@ -4,17 +4,20 @@ import { ReactElement } from "react";
 import { JSXElementConstructor } from "react";
 
 export type Technology = {
-  icon: () => ReactElement;
+  icon?: () => ReactElement;
   name: string;
 };
 
 export type TechnologyIcon = ReactElement | JSXElementConstructor<object>;
+
+export type ProjectStatus = "EM USO" | "DEPLOY" | "SPRINT 1";
 
 export type ProjectCardProps = {
   id: number;
   title: string;
   description: string;
   technologies: Technology[];
+  status: ProjectStatus;
   repoUrl?: string;
   liveDemoUrl?: string;
   link: string;
@@ -22,6 +25,19 @@ export type ProjectCardProps = {
 };
 
 export type Project = ProjectCardProps;
+
+export type ContentStatus = "em-breve" | "publicado";
+export type ScratchCategory = "movement" | "control" | "operators";
+
+export type ContentEntryMeta = {
+  slug: string;
+  title: string;
+  summary: string;
+  date: string;
+  status: ContentStatus;
+  tags?: string[];
+  category?: ScratchCategory;
+};
 
 export type ShufflingTitleProps = {
   text: string;
