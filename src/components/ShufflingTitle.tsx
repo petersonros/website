@@ -5,7 +5,8 @@
 import { useEffect, useState } from "react";
 import type { ShufflingTitleProps } from "@/types";
 
-const CHARS = "!@#$%¨&*()_+-=[]{}|;:'\",.<>?/~`";
+const CHARS =
+  "!@#$%¨&*()_+-=[]{}|;:'\",.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 export function ShufflingTitle({
   text,
@@ -15,6 +16,15 @@ export function ShufflingTitle({
   const [displayed, setDisplayed] = useState(text);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      setDisplayed(text);
+      return;
+    }
+
     let iteration = 0;
 
     const id = setInterval(() => {
@@ -39,5 +49,10 @@ export function ShufflingTitle({
     return () => clearInterval(id);
   }, [text, delay]);
 
-  return <h2 className={className}>{displayed}</h2>;
+  return (
+    <h2 className={className}>
+      <span aria-hidden="true">{displayed}</span>
+      <span className="sr-only">{text}</span>
+    </h2>
+  );
 }
