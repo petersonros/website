@@ -30,7 +30,7 @@ export default function SobrePage() {
           Minha trajetória profissional passou por mais de{" "}
           <strong>20 anos na indústria de usinagem</strong>, em três empresas
           diferentes — comecei como ajudante geral e cheguei a{" "}
-          <strong>Analista de Processos de micro usinagem CNC</strong>,
+          <strong>Analista de Processos</strong>,
           desenhando peças, gerando programas CNC e simulando em CAD antes do
           envio à produção.
         </p>
@@ -45,17 +45,15 @@ export default function SobrePage() {
         </p>
 
         <p className="text-lg leading-relaxed">
-          Atualmente colaboro com um colégio na área de tecnologia
-          educacional, dando suporte às aulas de informática e já conduzindo
-          aulas de Scratch para os alunos.
+          Atualmente colaboro com um colégio,
+          dando suporte às aulas de informática.
         </p>
 
         <p className="text-lg leading-relaxed">
           Este site é um projeto pessoal desenvolvido com{" "}
           <strong>Next.js</strong>, <strong>TypeScript</strong> e{" "}
           <strong>Tailwind CSS</strong>. Aqui compartilho meu portfólio,
-          minha formação, tutoriais técnicos e o material de Scratch que uso
-          em sala de aula.
+          minha formação, tutoriais técnicos e o material de Scratch.
         </p>
 
         <div className="pt-4">
