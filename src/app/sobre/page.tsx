@@ -27,7 +27,19 @@ export default function SobrePage() {
         </p>
 
         <p className="text-lg leading-relaxed">
-          Sou <strong>formado em Análise e Desenvolvimento de Sistemas</strong>{" "}
+          Minha trajetória profissional passou por mais de{" "}
+          <strong>20 anos na indústria de usinagem</strong>, em três empresas
+          diferentes — comecei como ajudante geral e cheguei a{" "}
+          <strong>Analista de Processos de micro usinagem CNC</strong>,
+          desenhando peças, gerando programas CNC e simulando em CAD antes do
+          envio à produção.
+        </p>
+
+        <p className="text-lg leading-relaxed">
+          Ao encerrar esse ciclo, atuei por cerca de{" "}
+          <strong>6 anos como técnico de informática</strong>, período em que
+          aprofundei meus conhecimentos em hardware e programação e me{" "}
+          <strong>formei em Análise e Desenvolvimento de Sistemas</strong>{" "}
           (ADS), focado em tecnologias como <strong>Next.js</strong>,{" "}
           <strong>TypeScript</strong>, Python e PowerShell.
         </p>
@@ -36,15 +48,6 @@ export default function SobrePage() {
           Atualmente colaboro com um colégio na área de tecnologia
           educacional, dando suporte às aulas de informática e já conduzindo
           aulas de Scratch para os alunos.
-        </p>
-
-        <p className="text-lg leading-relaxed">
-          Antes disso, minha trajetória profissional passou por mais de{" "}
-          <strong>20 anos na indústria de usinagem</strong>, em três empresas
-          diferentes — comecei como ajudante geral e cheguei a{" "}
-          <strong>Analista de Processos de micro usinagem CNC</strong>,
-          desenhando peças, gerando programas CNC e simulando em CAD antes do
-          envio à produção.
         </p>
 
         <p className="text-lg leading-relaxed">

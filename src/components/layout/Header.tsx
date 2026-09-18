@@ -23,10 +23,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all backdrop-blur-sm ${
-        isScrolled
-          ? "bg-background/80 border-b border-border"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-50 transition-colors backdrop-blur-sm bg-background/90 border-b ${
+        isScrolled ? "border-border" : "border-transparent"
       }`}
     >
       <div className="text-foreground max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">

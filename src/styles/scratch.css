@@ -3,9 +3,10 @@
 /*
  * Seção Scratch quebra o padrão de propósito (CONTEXTO §10/§9.1): fundo claro
  * com a mesma textura pontilhada do resto do site (versão clara, como o
- * editor original do Scratch), cards com silhueta real de peça Scratch
- * (entalhe no topo, tab de encaixe embaixo), nas cores oficiais das
- * categorias do Scratch.
+ * editor original do Scratch), cards simples (cantos arredondados normais —
+ * a silhueta de peça Scratch com entalhe/tab foi abandonada, não ficou com
+ * aparência realista o suficiente) nas cores oficiais das categorias do
+ * Scratch.
  */
 
 .scratch-panel {
@@ -20,35 +21,10 @@
 }
 
 .scratch-block {
-  position: relative;
-  border-radius: 16px;
+  border-radius: 1rem;
   padding: 1.5rem 1.25rem 1.75rem;
   color: #ffffff;
   box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2);
-}
-
-/* Entalhe no topo (encaixe de cima) */
-.scratch-block::before {
-  content: "";
-  position: absolute;
-  top: -12px;
-  left: 24px;
-  width: 44px;
-  height: 12px;
-  background: inherit;
-  border-radius: 6px 6px 0 0;
-}
-
-/* Tab de encaixe embaixo */
-.scratch-block::after {
-  content: "";
-  position: absolute;
-  bottom: -12px;
-  left: 24px;
-  width: 44px;
-  height: 12px;
-  background: inherit;
-  border-radius: 0 0 6px 6px;
 }
 
 /* Cores oficiais das categorias do Scratch */
