@@ -1,36 +1,30 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import Link from "next/link";
-
-const BG = dynamic(
-  () =>
-    import("@/components/CubeBackground").then(
-      (m) => m.default ?? m.CubeBackground
-    ),
-  { ssr: false, loading: () => null }
-);
 
 export function HeroSection() {
   return (
     <section
       className="relative overflow-hidden bg-background text-foreground
-                 min-h-screen py-32 flex flex-col items-center justify-center text-center px-4"
+                 min-h-screen py-32 flex flex-col items-center justify-center px-4"
     >
-      <BG className="opacity-30" />
-      <div className="relative z-10 flex flex-col items-center gap-10">
-        <div>
+      <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 max-w-5xl">
+        <div className="text-center lg:text-left lg:flex-1">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Olá, eu sou Peterson
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0">
             Formado em <strong>Análise e Desenvolvimento de Sistemas</strong>,
             com uma trajetória que vem da usinagem CNC até o desenvolvimento web.
           </p>
+          <Link
+            href="/sobre"
+            className="inline-block mt-6 font-mono text-sm text-primary hover:underline underline-offset-2"
+          >
+            cat sobre-mim.md →
+          </Link>
         </div>
 
         {/* Painel "sobre" estilo editor de código (CONTEXTO §10) */}
-        <div className="w-full max-w-md text-left rounded-lg border border-border bg-card shadow-xl overflow-hidden">
+        <div className="w-full max-w-md text-left rounded-lg border border-border bg-card shadow-xl overflow-hidden lg:flex-1 lg:shrink-0">
           <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-border bg-background/60">
             <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
@@ -60,20 +54,25 @@ export function HeroSection() {
                 20+ anos em usinagem/CNC
               </span>
               {"\n"}
-              <span className="text-muted-foreground">stack:</span>{" "}
-              <span className="text-foreground">
-                [Next.js, TypeScript, Python, PowerShell, Linux]
-              </span>
+              <span className="text-muted-foreground">stack:</span>
+              {"\n"}
+              {"  "}
+              <span className="text-foreground">- Next.js</span>
+              {"\n"}
+              {"  "}
+              <span className="text-foreground">- TypeScript</span>
+              {"\n"}
+              {"  "}
+              <span className="text-foreground">- Python</span>
+              {"\n"}
+              {"  "}
+              <span className="text-foreground">- PowerShell</span>
+              {"\n"}
+              {"  "}
+              <span className="text-foreground">- Linux</span>
             </code>
           </pre>
         </div>
-
-        <Link
-          href="/sobre"
-          className="font-mono text-sm text-primary hover:underline underline-offset-2"
-        >
-          cat sobre-mim.md →
-        </Link>
       </div>
     </section>
   );

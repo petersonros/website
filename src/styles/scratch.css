@@ -1,19 +1,27 @@
 /* src/styles/scratch.css */
 
 /*
- * Seção Scratch quebra o padrão de propósito (CONTEXTO §10): painel verde
- * saturado, cards com silhueta real de peça Scratch (entalhe no topo, tab de
- * encaixe embaixo), nas cores oficiais das categorias do Scratch.
+ * Seção Scratch quebra o padrão de propósito (CONTEXTO §10/§9.1): fundo claro
+ * com a mesma textura pontilhada do resto do site (versão clara, como o
+ * editor original do Scratch), cards com silhueta real de peça Scratch
+ * (entalhe no topo, tab de encaixe embaixo), nas cores oficiais das
+ * categorias do Scratch.
  */
 
 .scratch-panel {
-  background-color: #0d3a1f;
-  color: #eaf8ee;
+  background-color: #eef3f7;
+  color: #16232f;
+  background-image: radial-gradient(
+    circle,
+    rgba(15, 43, 71, 0.16) 1px,
+    transparent 1px
+  );
+  background-size: 36px 36px;
 }
 
 .scratch-block {
   position: relative;
-  border-radius: 10px;
+  border-radius: 16px;
   padding: 1.5rem 1.25rem 1.75rem;
   color: #ffffff;
   box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2);
@@ -23,24 +31,24 @@
 .scratch-block::before {
   content: "";
   position: absolute;
-  top: -8px;
+  top: -12px;
   left: 24px;
-  width: 32px;
-  height: 8px;
+  width: 44px;
+  height: 12px;
   background: inherit;
-  border-radius: 4px 4px 0 0;
+  border-radius: 6px 6px 0 0;
 }
 
 /* Tab de encaixe embaixo */
 .scratch-block::after {
   content: "";
   position: absolute;
-  bottom: -8px;
+  bottom: -12px;
   left: 24px;
-  width: 32px;
-  height: 8px;
+  width: 44px;
+  height: 12px;
   background: inherit;
-  border-radius: 0 0 4px 4px;
+  border-radius: 0 0 6px 6px;
 }
 
 /* Cores oficiais das categorias do Scratch */
