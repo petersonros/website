@@ -50,7 +50,7 @@ export default function HomePage() {
             <Link
               key={href}
               href={href}
-              className="rounded-lg border border-border bg-card p-6 hover:border-primary/40 hover:shadow-lg transition-all"
+              className="hover-accent-border rounded-lg border border-border bg-card p-6 hover:shadow-lg transition-all"
             >
               <Icon className="text-primary mb-3" size={28} />
               <div className="font-semibold text-lg mb-1">{label}</div>

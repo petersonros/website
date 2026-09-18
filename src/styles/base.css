@@ -16,3 +16,38 @@ body {
   color: var(--foreground);
   overflow-x: hidden;
 }
+
+/*
+ * Header fixo: `bg-background/90` (Tailwind) não funciona aqui porque
+ * `--background` está em formato hex fechado (#0f2b47), não em canais
+ * "r g b" — o modificador de opacidade do Tailwind precisa de
+ * `rgb(var(--x) / alpha)` e falha silenciosamente com hex fechado,
+ * deixando o header sem cor de fundo nenhuma (só o blur). Por isso a cor
+ * fixa em rgba() aqui, fora do Tailwind.
+ */
+.site-header {
+  background-color: rgba(15, 43, 71, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/*
+ * Mesmo bug do .site-header acima: qualquer classe Tailwind com modificador
+ * de opacidade (`/NN`) sobre uma cor baseada em var(--x) com hex fechado não
+ * gera regra nenhuma — a classe fica muda. Estes três pontos usavam
+ * `bg-primary/15`, `border-primary/40` ou `bg-background/60` e sofriam do
+ * mesmo problema (badge de status sem preenchimento, hover sem cor, barra
+ * do editor sem tom). Corrigidos com rgba() fixo, fora do Tailwind.
+ */
+.hover-accent-border:hover {
+  border-color: rgba(227, 168, 87, 0.4);
+}
+
+.status-badge--primary {
+  background-color: rgba(227, 168, 87, 0.15);
+  border-color: rgba(227, 168, 87, 0.4);
+}
+
+.hero-editor-bar {
+  background-color: rgba(15, 43, 71, 0.6);
+}

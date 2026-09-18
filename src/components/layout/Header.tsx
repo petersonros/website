@@ -23,7 +23,7 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-colors backdrop-blur-sm bg-background/90 border-b ${
+      className={`site-header fixed top-0 left-0 w-full z-50 transition-colors border-b ${
         isScrolled ? "border-border" : "border-transparent"
       }`}
     >

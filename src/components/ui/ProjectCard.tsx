@@ -6,8 +6,8 @@ import type { ProjectCardProps } from "@/types";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 const STATUS_STYLES: Record<ProjectCardProps["status"], string> = {
-  "EM USO": "bg-primary/15 text-primary border-primary/40",
-  DEPLOY: "bg-primary/15 text-primary border-primary/40",
+  "EM USO": "status-badge--primary text-primary",
+  DEPLOY: "status-badge--primary text-primary",
   "SPRINT 1": "bg-muted text-muted-foreground border-border",
 };
 
@@ -20,7 +20,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   status,
 }) => {
   return (
-    <div className="group w-full max-w-sm rounded-2xl border border-border bg-card text-foreground shadow-sm transition-all duration-300 md:hover:-translate-y-1 hover:shadow-lg hover:border-primary/40">
+    <div className="hover-accent-border group w-full max-w-sm rounded-2xl border border-border bg-card text-foreground shadow-sm transition-all duration-300 md:hover:-translate-y-1 hover:shadow-lg">
       <div className="rounded-2xl overflow-hidden flex flex-col h-[280px] sm:h-[280px] p-4">
         <div className="flex-shrink-0 flex items-center justify-between gap-2 pt-2 mb-4">
           <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">

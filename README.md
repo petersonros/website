@@ -16,7 +16,7 @@ O projeto foi planejado com foco em:
 - ✅ **Formação** (`/formacao`) — curso de ADS e trabalhos de extensão
 - ✅ **Portfólio** (`/projetos`) — projetos reais, com carrossel no mobile (Swiper.js) e grid no desktop
 - ✅ **Tutoriais** (`/tutoriais`) — posts técnicos em MDX (git, deploy, organização de projetos)
-- ✅ **Scratch** (`/scratch`) — material testado em sala de aula, cards em formato de peça Scratch
+- ✅ **Scratch** (`/scratch`) — material testado em sala de aula, cards nas cores oficiais das categorias do Scratch
 - ✅ **Rodapé fixo** com ícones de redes sociais e botão "Voltar ao topo"
 
 ## 🛠️ Tecnologias e Ferramentas
@@ -27,7 +27,6 @@ O projeto foi planejado com foco em:
 - [@next/mdx](https://www.npmjs.com/package/@next/mdx) + [gray-matter](https://www.npmjs.com/package/gray-matter) — conteúdo local em MDX com frontmatter
 - [Swiper.js](https://swiperjs.com/react) — Carrossel poderoso para mobile
 - [React Icons](https://react-icons.github.io/react-icons/) / [Lucide](https://lucide.dev/) — Ícones
-- [Three.js](https://threejs.org/) — Plano de fundo animado (cubo) da seção Hero
 
 ## 🚀 Como rodar localmente
 

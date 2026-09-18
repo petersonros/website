@@ -25,7 +25,7 @@ export function HeroSection() {
 
         {/* Painel "sobre" estilo editor de código (CONTEXTO §10) */}
         <div className="w-full max-w-md min-w-0 text-left rounded-lg border border-border bg-card shadow-xl overflow-hidden lg:flex-1 lg:shrink-0">
-          <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-border bg-background/60">
+          <div className="hero-editor-bar flex items-center gap-1.5 px-4 py-2.5 border-b border-border">
             <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />

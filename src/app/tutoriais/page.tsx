@@ -31,7 +31,7 @@ export default function TutoriaisPage() {
             <Link
               key={entry.slug}
               href={`/tutoriais/${entry.slug}`}
-              className="block rounded-lg border border-border bg-card p-5 hover:border-primary/40 hover:shadow-lg transition-all"
+              className="hover-accent-border block rounded-lg border border-border bg-card p-5 hover:shadow-lg transition-all"
             >
               <div className="flex items-center justify-between gap-2 mb-2">
                 <h2 className="text-xl font-semibold">{entry.title}</h2>
