@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
-import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { getAllEntries, getSlugs } from "@/lib/content";
 
 export const dynamicParams = false;
@@ -30,7 +29,7 @@ export default async function ScratchEntryPage({
   const { default: Post } = await import(`@/content/scratch/${slug}.mdx`);
 
   return (
-    <SectionWrapper>
+    <section className="scratch-panel min-h-screen pt-24 md:pt-32 px-4 md:px-6 flex flex-col items-center">
       <article className="max-w-3xl mx-auto">
         <Post />
         <Link
@@ -40,6 +39,6 @@ export default async function ScratchEntryPage({
           ← Voltar para Scratch
         </Link>
       </article>
-    </SectionWrapper>
+    </section>
   );
 }

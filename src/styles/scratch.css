@@ -10,8 +10,24 @@
  */
 
 .scratch-panel {
-  background-color: #eef3f7;
-  color: #16232f;
+  /*
+   * Sobrescreve as variáveis de tema (consumidas pelas classes Tailwind
+   * bg-background/text-foreground/bg-muted/border-border/text-primary em
+   * qualquer descendente, inclusive o conteúdo MDX das páginas de detalhe)
+   * para a versão clara — sem isso o texto do tema escuro global ficaria
+   * ilegível sobre o fundo claro desta seção.
+   */
+  --background: #eef3f7;
+  --foreground: #16232f;
+  --card: #ffffff;
+  --border: #d7e0e8;
+  --primary: #8a5a12;
+  --primary-foreground: #eef3f7;
+  --muted: #e2e9ef;
+  --muted-foreground: #4b5b6a;
+
+  background-color: var(--background);
+  color: var(--foreground);
   background-image: radial-gradient(
     circle,
     rgba(15, 43, 71, 0.16) 1px,
