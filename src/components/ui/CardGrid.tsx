@@ -27,7 +27,7 @@ export const CardGrid = () => {
 
   const scrollTo = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
-      const pageWidth = 1280 + 16;
+      const pageWidth = scrollContainerRef.current.clientWidth;
       const newScrollLeft =
         direction === "left"
           ? scrollContainerRef.current.scrollLeft - pageWidth
@@ -42,8 +42,11 @@ export const CardGrid = () => {
 
   return (
     <section className="min-h-screen bg-background text-foreground py-16 px-4 sm:px-6 md:px-2 lg:px-2">
-      <div className="mx-auto max-w-7xl">
-        <ShufflingTitle text="Portfólio" className="text-4xl font-bold py-16" />
+      <div className="mx-auto max-w-6xl">
+        <ShufflingTitle
+          text="Portfólio"
+          className="text-3xl font-bold tracking-tight text-primary mb-10"
+        />
         <div className="block md:hidden">
           <ProjectCarousel />
         </div>
@@ -107,8 +110,7 @@ export const CardGrid = () => {
                 (_, pageIndex) => (
                   <div
                     key={pageIndex}
-                    className="grid grid-cols-3 grid-rows-2 gap-6 flex-shrink-0"
-                    style={{ width: "1160px" }}
+                    className="grid w-full grid-cols-3 grid-rows-2 gap-6 flex-shrink-0"
                   >
                     {projects
                       .slice(pageIndex * 6, pageIndex * 6 + 6)
