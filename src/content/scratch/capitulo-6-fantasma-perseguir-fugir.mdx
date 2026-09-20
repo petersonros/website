@@ -1,0 +1,147 @@
+---
+title: "Capítulo 6 — O fantasma persegue (e foge)"
+summary: "Segunda metade da aula dupla: o fantasma ganha vida — persegue o Pac-Man, foge quando é a vez dele de ter medo, e se conecta ao resto do jogo por mensagens."
+date: "2026-09-29"
+status: "publicado"
+aula: 6
+---
+
+> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu, não um roteiro fechado escrito antes. É a segunda metade da aula dupla que construiu o primeiro fantasma.
+
+## Contexto da aula
+
+No Capítulo 5, o fantasma já sabia checar quais direções estavam livres (`posso`) e andar numa direção quando mandado (`movimento`). Faltava a parte que dá **intenção** a ele: pra que lado ele *quer* ir, e por quê.
+
+## Mirar no alvo: o bloco `quero perseguir`
+
+Esse bloco recebe **dois parâmetros** — um X e um Y, a posição de um alvo — e decide a direção geral (não o movimento em si, só a intenção):
+
+```
+Defina bloco [quero perseguir (X) (Y)]
+Se <(X) > (minha posição x)> então
+  defina [direção horizontal] para [D]
+Senão
+  defina [direção horizontal] para [E]
+
+Se <(Y) > (minha posição y)> então
+  defina [direção vertical] para [C]
+Senão
+  defina [direção vertical] para [B]
+```
+
+> 💡 **Para a turma:** por que passar X e Y como parâmetros, em vez de sempre mirar direto no Pac-Man? Porque esse mesmo bloco vai servir pra **duas situações diferentes**: perseguir o Pac-Man de verdade, e (quando o fantasma é comido) voltar mirando num ponto fixo — a entrada da caixinha. Um bloco só, dois usos.
+
+## O oposto: o bloco `quero fugir`
+
+Quase idêntico ao `quero perseguir`, mas com as comparações **invertidas** — em vez de ir na direção do Pac-Man, escolhe a direção **contrária**:
+
+```
+Defina bloco [quero fugir]
+Se <(posição x do pacman) > (minha posição x)> então
+  defina [direção horizontal] para [E]     ← note que inverteu
+Senão
+  defina [direção horizontal] para [D]
+
+Se <(posição y do pacman) > (minha posição y)> então
+  defina [direção vertical] para [B]       ← inverteu também
+Senão
+  defina [direção vertical] para [C]
+```
+
+> 💡 **Para a turma:** mostra os dois blocos lado a lado e pergunta: "o que mudou?" — é uma ótima forma da turma perceber sozinha a lógica da inversão, em vez de só ouvir a explicação.
+
+## Escolhendo a direção de verdade
+
+Ter uma "direção querida" não é suficiente — ela pode estar bloqueada. O fantasma decide na seguinte ordem, a cada passo:
+
+1. **Olha se está mais longe do alvo na horizontal ou na vertical**, e tenta primeiro o eixo mais distante (faz mais sentido reduzir a maior distância primeiro)
+2. Tenta a direção querida nesse eixo — **só se ela estiver livre E não for o oposto do movimento do passo anterior** (isso evita o fantasma "tremer" indo e voltando sem parar)
+3. Se não der, tenta a direção querida no outro eixo, com a mesma regra
+4. Se ainda não der, tenta continuar na **mesma direção de antes** (`movimento anterior`), se ainda estiver livre
+5. Se nada disso for possível, escolhe **uma direção aleatória** dentre as que sobraram livres — assim o fantasma nunca trava parado
+
+> 💡 **Para a turma:** essa é a parte mais longa do código (vários "se, senão" um dentro do outro), mas é sempre a mesma pergunta se repetindo: *"consigo ir pra onde eu quero? Se não, qual é o próximo melhor jeito?"* — vale desenhar esse fluxo no quadro antes de montar em blocos, pra turma enxergar a lógica sem se perder na quantidade de blocos.
+
+## Os dois estados especiais: fugindo e olhos
+
+O fantasma se comporta diferente dependendo de duas variáveis:
+
+- **`fugindo`** (0 ou 1): quando a Vitamina é comida, todos os fantasmas ficam "com medo" por um tempo
+- **`olhos`** (0 ou 1): quando o Pac-Man come um fantasma que estava fugindo, ele não desaparece — vira só os olhos, voltando pra caixinha
+
+No laço principal, antes de decidir a direção, o fantasma checa esses dois estados:
+
+```
+Se <(fugindo) = (0)> então
+  Se <(olhos) = (0)> então
+    chama [quero perseguir] (x do pacman) (y do pacman)
+    mude para a fantasia [normal]
+  Senão
+    chama [quero perseguir] (60) (0)      ← mira na entrada da caixa
+    mude para a fantasia [olhos]
+    Se <chegou em x:(0) y:(0)> então
+      defina [olhos] para (0)
+      chama [Sai da caixa]
+Senão
+  chama [quero fugir]
+  mude para a fantasia [fugir]
+```
+
+## Conectando tudo: as mensagens
+
+Três scripts extras conectam o fantasma ao resto do jogo:
+
+**Ao tocar no Pac-Man** (rodando em paralelo, sempre checando):
+```
+Para sempre
+  Espere até <tocando em [pacman]?>
+  Se <(fugindo) = (0)> então
+    Transmita [fimJogo]           ← fantasma pegou o Pac-Man
+  Senão
+    defina [olhos] para (1)       ← Pac-Man comeu o fantasma
+    defina [fugindo] para (0)
+  Espere (1) segundo
+```
+
+**Ao receber a mensagem "fugindo"** (transmitida pela Vitamina ao ser comida):
+```
+Quando eu receber [fugindo]
+defina [fugindo] para (1)
+Espere (10) segundos
+defina [fugindo] para (0)
+```
+
+> 💡 **Para a turma:** lá no Capítulo 3, quando a Vitamina foi construída, ela só fazia uma coisa: sumir ao ser tocada. Ela não avisava ninguém — porque na hora, não existia ninguém que precisasse saber disso. Agora que os fantasmas existem e sabem reagir a "fugindo", é o momento certo de **voltar na Vitamina** e adicionar uma linha só: `Transmita [fugindo]`, logo antes dela sumir. Não precisa construir tudo de uma vez só — dá pra voltar num sprite "pronto" e dar a ele uma nova responsabilidade quando o resto do jogo já estiver preparado pra aproveitar isso.
+
+**Ao receber "fimJogo":**
+```
+Quando eu receber [fimJogo]
+Esconda
+Pare [outros scripts do sprite]
+```
+
+## Saindo da caixinha
+
+O bloco `Sai da caixa`, chamado no início e toda vez que o fantasma "renasce":
+
+```
+Defina bloco [Sai da caixa]
+Mude para a fantasia [normal]
+Vá para x: (0) y: (40)
+Aponte para a direção (90)
+Deslize (1) segundo até x: (0) y: (0)
+Deslize (1) segundo até x: (60) y: (0)
+```
+
+## Checklist do que a turma alcançou
+
+- [ ] O fantasma persegue o Pac-Man de verdade, tentando reduzir a distância
+- [ ] O fantasma não fica "tremendo" voltando pra trás toda hora
+- [ ] Encostar no fantasma (fora do modo fuga) termina o jogo
+- [ ] Comer a Vitamina deixa os fantasmas fugindo por 10 segundos
+- [ ] Encostar num fantasma fugindo faz ele virar olhos e voltar pra caixinha
+- [ ] A turma entende a diferença entre `quero perseguir` e `quero fugir`
+
+## O que ainda não existe nessa etapa
+
+- Só existe um fantasma (Amarelo) — os outros 3 vêm no próximo capítulo, e são praticamente uma cópia deste

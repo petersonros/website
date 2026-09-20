@@ -55,3 +55,26 @@
 .scratch-block--operators {
   background-color: #59c059;
 }
+
+/*
+ * Capítulos da série Pac-Man (numerados, campo `aula` no frontmatter): sem
+ * cor de categoria — não faz sentido numa série sequencial que mistura
+ * vários conceitos por capítulo. Card neutro com badge "Aula N" no lugar.
+ */
+.scratch-block--neutral {
+  background-color: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+.scratch-chapter-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: 999px;
+  padding: 0.125rem 0.6rem;
+}

@@ -1,0 +1,73 @@
+---
+title: "Capítulo 5 — Como o fantasma decide se pode andar"
+summary: "Início da construção do fantasma (aula dupla): o truque dos sensores coloridos e os primeiros blocos personalizados, posso e movimento."
+date: "2026-09-28"
+status: "publicado"
+aula: 5
+---
+
+> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu, não um roteiro fechado escrito antes. A construção do fantasma ocupou duas aulas inteiras; este capítulo cobre a primeira metade.
+
+## Contexto da aula
+
+Até aqui, todo o labirinto e a lógica giravam em torno do Pac-Man. Nessa aula, a turma começou o primeiro fantasma — o **Amarelo**. Antes de pensar em "perseguir o Pac-Man", tinha um problema mais básico pra resolver: **como o fantasma sabe se tem parede na frente dele?**
+
+O Pac-Man resolve isso de um jeito simples (checa se a cor embaixo dele é preta). Mas um fantasma precisa saber, **ao mesmo tempo**, se pode ir pra cima, baixo, esquerda ou direita — pra decidir qual direção escolher. Isso pediu uma solução nova.
+
+## Blocos personalizados: um conceito novo
+
+Antes do código, um conceito: até agora, cada comportamento ficava dentro de um `Para sempre` só. Só que a lógica do fantasma ia ficar grande e ia se repetir bastante (e ainda por cima, ia se repetir em **4 fantasmas diferentes** nas próximas aulas). A turma aprendeu a criar **blocos personalizados** — blocos com nome próprio, que a gente monta uma vez e chama sempre que precisar, como se fosse um bloco pronto do Scratch.
+
+> 💡 **Para a turma:** é como ensinar uma palavra nova pro Scratch. Em vez de repetir os mesmos 10 blocos toda vez, a gente cria um bloco chamado, por exemplo, `posso`, ensina uma vez o que ele significa, e depois só chama `posso` sempre que precisar daquilo.
+
+## O truque dos sensores coloridos
+
+Pra saber se tem parede em cada direção, o fantasma tem uma **fantasia especial chamada "verifica"** — nela, existem pequenos pontos de cor diferente em cada lado do fantasma (um verde `#00ff68` na direita, um magenta `#d300ff` na esquerda, um amarelo-esverdeado `#c9ff00` em cima, um vermelho `#ff0000` embaixo). São como "bigodes" invisíveis de gato, um em cada direção.
+
+O bloco personalizado **`posso`** troca pra essa fantasia só um instante e checa, para cada bigode, se ele está tocando a cor da parede:
+
+```
+Defina bloco [posso]
+defina [posso] para ()
+Se <não <a cor (verde) está tocando a cor (preto)?>> então
+  junte [posso] com [D]      → pode ir pra Direita
+Se <não <a cor (magenta) está tocando a cor (preto)?>> então
+  junte [posso] com [E]      → pode ir pra Esquerda
+Se <não <a cor (amarelo-esverdeado) está tocando a cor (preto)?>> então
+  junte [posso] com [C]      → pode ir pra Cima
+Se <não <(cor vermelho tocando preto) e (cor vermelho tocando a cor da caixa)>> então
+  junte [posso] com [B]      → pode ir pra Baixo
+```
+
+> 💡 **Para a turma:** o resultado vira uma palavra tipo `"DCB"` — cada letra é uma direção livre naquele instante. Se o bigode de baixo está tocando parede, o "B" simplesmente não entra na palavra. É uma lista de direções possíveis, guardada como texto.
+
+> 🔍 **Detalhe a mais no sensor de baixo:** ele também checa uma segunda cor — a cor da porta da caixinha onde os fantasmas nascem. Isso existe pra o fantasma não tentar voltar pra dentro da caixa sozinho enquanto está rodando pelo labirinto (só volta lá quando é comido — isso é assunto do próximo capítulo).
+
+## O bloco que faz o fantasma andar de verdade
+
+Depois de saber quais direções estão livres, falta só executar o movimento. Esse é o bloco **`movimento`**, que recebe **um parâmetro** — a direção escolhida:
+
+```
+Defina bloco [movimento (valor)]
+Se <(valor) = [D]> então  mude x por (20)
+Se <(valor) = [E]> então  mude x por (-20)
+Se <(valor) = [C]> então  mude y por (20)
+Se <(valor) = [B]> então  mude y por (-20)
+defina [movimento anterior] para (valor)
+```
+
+> 💡 **Para a turma — primeiro bloco com parâmetro:** repara que `movimento` não é chamado sozinho — a gente passa **qual direção** ele deve mover (`movimento D`, `movimento E`...). É a mesma ideia de quando o `mova (20) passos` do Pac-Man pede um número — só que aqui a gente criou nosso próprio bloco que pede uma informação.
+
+A última linha guarda a direção usada numa variável chamada `movimento anterior` — isso ainda não faz nada sozinho, mas vai ser importante no próximo capítulo, pra o fantasma não ficar "tremendo" voltando pra trás toda hora.
+
+## Checklist do que a turma alcançou
+
+- [ ] A turma entende por que criar um bloco personalizado em vez de repetir os mesmos blocos várias vezes
+- [ ] A turma consegue explicar o truque dos sensores coloridos com as próprias palavras
+- [ ] O bloco `posso` monta corretamente a lista de direções livres
+- [ ] O bloco `movimento` move o fantasma na direção pedida como parâmetro
+
+## O que ainda não existe nessa etapa
+
+- O fantasma ainda não decide **qual** direção escolher — só sabe checar quais são possíveis e executar uma quando mandado
+- Ainda não existe perseguição, fuga, nem conexão com as mensagens do jogo — isso é o Capítulo 6

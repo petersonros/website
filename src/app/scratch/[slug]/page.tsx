@@ -30,7 +30,7 @@ export default async function ScratchEntryPage({
 
   return (
     <section className="scratch-panel min-h-screen pt-24 md:pt-32 px-4 md:px-6 flex flex-col items-center">
-      <article className="max-w-3xl mx-auto">
+      <article className="max-w-3xl mx-auto min-w-0 w-full">
         <Post />
         <Link
           href="/scratch"

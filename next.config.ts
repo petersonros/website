@@ -17,12 +17,14 @@ const nextConfig: NextConfig = {
 
 // Conteúdo MDX vive em src/content/ e é importado dinamicamente pelas rotas
 // [slug] (não usado como page.mdx), então pageExtensions não precisa mudar.
-// remark-frontmatter (passado por nome, não por import) faz o compilador MDX
-// ignorar o bloco `---` que o gray-matter usa para extrair title/summary/date
-// de cada arquivo — plugins com opções não serializáveis (funções JS) não
-// funcionam com o Turbopack, que exige nomes de string.
+// Plugins passados por nome (não por import): opções com funções JS não
+// serializáveis não funcionam com o Turbopack, que exige nomes de string.
+// - remark-frontmatter: ignora o bloco `---` que o gray-matter usa pra
+//   extrair title/summary/date de cada arquivo
+// - remark-gfm: sem isso, tabelas markdown (`| a | b |`) não são reconhecidas
+//   e caem como texto literal num <p> — usado no Capítulo 7 do Pac-Man
 const withMDX = createMDX({
-  options: { remarkPlugins: ["remark-frontmatter"] },
+  options: { remarkPlugins: ["remark-frontmatter", "remark-gfm"] },
 });
 
 export default withMDX(nextConfig);

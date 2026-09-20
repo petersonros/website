@@ -1,0 +1,64 @@
+---
+title: "Capítulo 7 — Copiar e diferenciar"
+summary: "Terceira aula sobre fantasmas: duplicamos o Amarelo três vezes e demos personalidade a cada um mudando só dois números — tempo pra aparecer e velocidade."
+date: "2026-09-30"
+status: "publicado"
+aula: 7
+---
+
+> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu, não um roteiro fechado escrito antes.
+
+## Contexto da aula
+
+Depois de duas aulas construindo o fantasma Amarelo do zero, a pergunta da turma foi natural: *"a gente precisa fazer tudo de novo pros outros 3 fantasmas?"* A resposta é o ponto principal dessa aula: **não.**
+
+## Duplicar em vez de reconstruir
+
+No Scratch, clicar com o botão direito num sprite e escolher **Duplicar** copia o sprite inteiro — sprite, fantasias, sons e **todo o código**, blocos personalizados incluídos. A turma duplicou o Amarelo três vezes, criando o **Vermelho**, o **Rosa** e o **Azul**.
+
+> 💡 **Para a turma:** repara que os 3 fantasmas novos já nasceram sabendo perseguir, fugir, virar olhos, sair da caixa — tudo isso veio junto na cópia. A gente não escreveu nenhum bloco novo nessa aula.
+
+## O que realmente muda entre eles
+
+Comparando o código dos 4 fantasmas depois da duplicação, só **dois números** são diferentes em cada cópia — o resto do código é idêntico:
+
+| Fantasma | Tempo até aparecer | Velocidade (espera por passo) |
+|---|---|---|
+| **Amarelo** | aparece na hora | 0.14s (o mais rápido) |
+| **Vermelho** | 5 segundos depois | 0.18s |
+| **Rosa** | 10 segundos depois | 0.22s |
+| **Azul** | 15 segundos depois | 0.26s (o mais lento) |
+
+O **tempo até aparecer** foi adicionado logo depois de `espere até tecla espaço pressionada`, antes de mostrar o fantasma:
+
+```
+Quando eu receber [Jogo Pronto]
+Espere até <tecla [espaço] pressionada?>
+Espere (5) segundos          ← só isso muda entre os fantasmas (0, 5, 10 ou 15)
+Mostre
+Chama [Sai da caixa]
+...
+```
+
+A **velocidade** é o número no `espere` que fecha o laço principal, depois de mover e checar parede — quanto maior o número, mais devagar o fantasma anda:
+
+```
+Para sempre
+  ...
+  Chama [movimento] (direção escolhida)
+  Espere (0.14) segundos     ← só isso muda entre os fantasmas
+```
+
+> 💡 **Para a turma:** por que essa escolha, em vez de deixar todos exatamente iguais? Fantasmas idênticos, aparecendo todos ao mesmo tempo, ficariam meio sem graça — o jogador não distingue um do outro. Fazer cada um aparecer um pouco depois e se mover num ritmo levemente diferente dá **personalidade** a cada cor, sem precisar programar comportamentos diferentes de verdade.
+
+## Checklist do que a turma alcançou
+
+- [ ] Os 4 fantasmas existem no jogo, cada um com sua cor
+- [ ] Cada fantasma aparece em um momento diferente depois do espaço ser pressionado
+- [ ] Cada fantasma se move num ritmo levemente diferente
+- [ ] A turma entende que duplicar um sprite copia também os blocos personalizados dele
+- [ ] A turma consegue apontar exatamente os 2 números que mudam entre os fantasmas, sem precisar reabrir todo o código
+
+## Onde o projeto está agora
+
+Com esse capítulo, termina tudo o que já foi construído até o momento: Pac-Man se move, come pontinhos contados numa variável, existe tela de início e mensagens conectando tudo, a Vitamina ativa modo de fuga, e os 4 fantasmas perseguem (ou fogem) com personalidades levemente diferentes. O jogo ainda não está finalizado do jeito que a turma imagina — os próximos passos ficam para quando as próximas aulas acontecerem.

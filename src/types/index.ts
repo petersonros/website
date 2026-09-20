@@ -37,6 +37,7 @@ export type ContentEntryMeta = {
   status: ContentStatus;
   tags?: string[];
   category?: ScratchCategory;
+  aula?: number;
 };
 
 export type ShufflingTitleProps = {

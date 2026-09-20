@@ -1,0 +1,127 @@
+---
+title: "Capítulo 3 — Conectando tudo com mensagens"
+summary: "Terceira aula da série: o sistema de enviar e receber mensagens conecta os pontinhos, o Pac-Man e a tela — e a Vitamina entra no jogo."
+date: "2026-09-26"
+status: "publicado"
+aula: 3
+---
+
+> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu na Aula 3, não um roteiro fechado escrito antes.
+
+## Contexto da aula
+
+Depois da Aula 2, o jogo tinha um problema visível: assim que clicava na bandeira verde, o Pac-Man **já saía andando**, ao mesmo tempo em que os 391 pontinhos ainda estavam sendo criados na tela. Ficava tudo acontecendo ao mesmo tempo, sem ordem.
+
+O conceito da Aula 3 resolve exatamente isso, e foi o que recebeu mais atenção nessa aula: **transmitir e receber mensagens.**
+
+> 💡 **Para a turma:** pensa numa mensagem como um aviso de rádio. Um sprite **transmite** um aviso (ex: "Jogo Pronto!") sem saber quem está ouvinho. Qualquer outro sprite pode **receber** esse aviso e decidir o que fazer quando ele chegar. Ninguém precisa saber o nome de quem transmitiu — só precisa saber qual aviso está esperando.
+
+## O que construímos
+
+### 1. Os pontinhos avisam quando terminam
+
+No sprite **pontos**, depois de montar a grade inteira (o que já existia da Aula 2), adicionamos uma linha no final:
+
+```
+Quando a bandeira verde for clicada
+Mostre
+Vá para x: (-220) y: (-160)
+Repita (17) vezes
+  Repita (23) vezes
+    Crie um clone de [este ator]
+    Adicione (20) a x
+  Mude x para (-220)
+  Adicione (20) a y
+Esconda
+Transmita [Jogo Pronto]
+```
+
+### 2. O Pac-Man passa a esperar o aviso
+
+O script de movimento do Pac-Man **deixou de rodar direto na bandeira verde** — agora ele só começa depois de receber "Jogo Pronto", e ainda espera o jogador apertar espaço:
+
+```
+Quando eu receber [Jogo Pronto]
+Espere até <tecla [espaço] pressionada?>
+Para sempre
+  Mova (20) passos
+  Se <tocando na cor [preto]?> ou <tocando na cor [roxo]?> então
+    Mova (-20) passos
+  Espere (0.1) segundos
+```
+
+> O script que controla a *direção* do Pac-Man (setas/WASD, da Aula 1) não mudou — continua rodando desde a bandeira verde. Só o script que faz ele *andar de verdade* é que passou a esperar o aviso.
+
+### 3. A tela reage às mensagens
+
+O sprite **tela** ganhou vida nessa aula, com três scripts separados — cada um reagindo a um momento do jogo:
+
+```
+Quando a bandeira verde for clicada
+Esconda
+Mude para a fantasia [inicio]
+Defina o efeito fantasma como (20)
+Vá para a camada da frente
+```
+
+```
+Quando eu receber [Jogo Pronto]
+Mostre
+Espere até <tecla [espaço] pressionada?>
+Esconda
+```
+
+```
+Quando eu receber [Fim de Jogo]
+Mude para a fantasia [fim]
+Mostre
+```
+
+> 💡 **Para a turma:** repara que **três scripts diferentes** reagem a três mensagens diferentes, cada um cuidando só da sua parte — nenhum precisa saber o que os outros fazem. É a mesma ideia de "cada um recebe o aviso que importa pra ele".
+
+### 4. A Vitamina entra no jogo
+
+Um novo sprite, posicionado nos 4 cantos do labirinto, com uma animação simples de piscar:
+
+```
+Quando a bandeira verde for clicada
+Mostre
+Vá para x: (-220) y: (-160)
+Crie um clone de [este ator]
+Vá para x: (220) y: (-160)
+Crie um clone de [este ator]
+Vá para x: (-220) y: (160)
+Crie um clone de [este ator]
+Vá para x: (220) y: (160)
+Crie um clone de [este ator]
+Esconda
+```
+
+```
+Quando eu começar como um clone
+Para sempre
+  Próxima fantasia
+  Espere (0.1) segundos
+```
+
+```
+Quando eu começar como um clone
+Espere até <tocando em [pacman]?>
+Apague este clone
+```
+
+> 💡 **Para a turma:** repara que a Vitamina usa a mesma ideia de clones da Aula 2 (criar cópias em vez de desenhar 4 sprites separados), só que aqui em 4 posições fixas, em vez de uma grade inteira.
+
+## Checklist do que a turma alcançou
+
+- [ ] O Pac-Man só começa a andar depois que os pontinhos terminam de aparecer **e** o jogador aperta espaço
+- [ ] A tela inicial some sozinha assim que o jogo fica pronto e o espaço é pressionado
+- [ ] A turma sabe explicar a diferença entre "transmitir" e "receber" com as próprias palavras
+- [ ] A Vitamina aparece piscando nos 4 cantos do labirinto e some ao ser tocada pelo Pac-Man
+
+## O que ainda não existe nessa etapa
+
+- Ainda não existe nenhum fantasma no jogo
+- A mensagem "Fim de Jogo" já é **esperada** pela tela, mas ainda **ninguém a transmite** — isso só vai fazer sentido quando os fantasmas entrarem
+- Tocar na Vitamina só faz ela sumir — ainda não ativa nenhum poder especial (isso fica para quando os fantasmas existirem)
+- A pontuação (variável `Pontos`) ainda não existe — fica pra uma aula dedicada só a explicar o conceito de variável

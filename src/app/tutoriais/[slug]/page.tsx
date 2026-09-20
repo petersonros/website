@@ -31,7 +31,7 @@ export default async function TutorialPage({
 
   return (
     <SectionWrapper>
-      <article className="max-w-3xl mx-auto">
+      <article className="max-w-3xl mx-auto min-w-0 w-full">
         <Post />
         <Link
           href="/tutoriais"

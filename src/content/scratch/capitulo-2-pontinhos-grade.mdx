@@ -1,0 +1,64 @@
+---
+title: "Capítulo 2 — Os pontinhos tomam conta do labirinto"
+summary: "Segunda aula da série: usando clones e uma grade de repetições, preenchemos o labirinto inteiro de pontinhos sem desenhar nenhum deles à mão."
+date: "2026-09-25"
+status: "publicado"
+aula: 2
+---
+
+> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu na Aula 2, não um roteiro fechado escrito antes.
+
+## Contexto da aula
+
+Na Aula 1, o Pac-Man já andava pelo labirinto. Mas um labirinto vazio não é um jogo — faltam os pontinhos pra comer. O desafio que a turma enfrentou: **como colocar centenas de pontinhos no mapa sem arrastar um por um?**
+
+A resposta foi um conceito novo: **clones**. Em vez de desenhar cada pontinho, criamos **um único sprite de pontinho** e deixamos o código criar cópias dele, nas posições certas, automaticamente.
+
+## O que construímos
+
+Tudo no sprite **pontos**.
+
+### 1. Montar a grade inteira
+
+```
+Quando a bandeira verde for clicada
+Mostre
+Vá para x: (-220) y: (-160)
+Repita (17) vezes
+  Repita (23) vezes
+    Crie um clone de [este ator]
+    Adicione (20) a x
+  Mude x para (-220)
+  Adicione (20) a y
+Esconda
+```
+
+> 💡 **Para a turma — a matemática por trás do "repita dentro do repita":** o `repita 23 vezes` de dentro é uma **coluna** sendo preenchida da esquerda pra direita (23 pontinhos, um do lado do outro). O `repita 17 vezes` de fora é **quantas vezes repetimos essa coluna inteira**, subindo uma linha a cada vez (17 linhas). Ou seja: **17 linhas × 23 colunas = 391 pontinhos** — é multiplicação de verdade, só que o computador faz a conta na prática, criando um clone por vez em vez de calcular o resultado.
+
+### 2. Cada pontinho decide sozinho se pode existir ali
+
+O labirinto tem paredes, e um pontinho não devia aparecer em cima de uma parede. Em vez de calcular manualmente onde estão as 391 posições válidas, deixamos **cada clone se auto-checar assim que nasce**:
+
+```
+Quando eu começar como um clone
+Se <tocando na cor [preto]?> ou <tocando na cor [roxo]?> então
+  Apague este clone
+Espere até <tocando em [pacman]?>
+Apague este clone
+```
+
+> 💡 **Para a turma:** a grade criou pontinhos em cima das paredes também — mas cada um deles, no instante em que nasce, checa a cor debaixo dele. Se for parede, ele se apaga sozinho, na hora. Sobra só os pontinhos que caíram nos corredores. É mais simples deixar o próprio pontinho decidir isso do que a gente calcular à mão onde estão os corredores.
+
+Depois disso, o mesmo clone fica esperando até o Pac-Man tocar nele — e aí se apaga também, como se tivesse sido "comido".
+
+## Checklist do que a turma alcançou
+
+- [ ] O labirinto aparece cheio de pontinhos, só nos corredores (nenhum em cima de parede)
+- [ ] A turma entende a relação entre "repita dentro de repita" e "linhas × colunas"
+- [ ] A turma sabe dizer quantos pontinhos a grade tenta criar (17 × 23 = 391), mesmo sabendo que nem todos sobrevivem
+- [ ] O pontinho some quando o Pac-Man toca nele
+
+## O que ainda não existe nessa etapa
+
+- Ainda não tem nenhuma pontuação — comer o pontinho só faz ele sumir, não conta nada ainda
+- O Pac-Man ainda começa a andar direto na bandeira verde, antes mesmo da grade de pontinhos terminar de aparecer
