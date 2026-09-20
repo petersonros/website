@@ -7,11 +7,6 @@
 
 @import "./scratch.css";
 
-/* Swiper core styles */
-@import "swiper/css";
-@import "swiper/css/navigation";
-@import "swiper/css/pagination";
-
 /*
  * Textura de fundo "prancheta técnica" (CONTEXTO §10): pontilhado bem sutil,
  * nunca uma grade cheia, nunca competindo com a leitura do texto.

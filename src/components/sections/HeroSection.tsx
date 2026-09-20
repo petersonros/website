@@ -6,6 +6,12 @@ export function HeroSection() {
       className="relative overflow-hidden bg-background text-foreground
                  min-h-screen py-32 flex flex-col items-center justify-center px-4"
     >
+      <div
+        aria-hidden="true"
+        className="hero-glow pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] rounded-full blur-[120px]"
+        style={{ backgroundColor: "rgba(227, 168, 87, 0.55)" }}
+      />
+
       <div className="relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16 w-full max-w-5xl min-w-0">
         <div className="text-center lg:text-left lg:flex-1 min-w-0 w-full">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 break-words">
@@ -17,7 +23,7 @@ export function HeroSection() {
           </p>
           <Link
             href="/sobre"
-            className="inline-block mt-6 font-mono text-sm text-primary hover:underline underline-offset-2"
+            className="hover-glow inline-block mt-6 font-mono text-sm text-primary hover:underline underline-offset-2"
           >
             cat sobre-mim.md →
           </Link>

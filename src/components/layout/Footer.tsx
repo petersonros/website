@@ -18,7 +18,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="hover:text-primary transition-colors"
+            className="hover-glow hover:text-primary transition-colors"
           >
             <Github size={20} />
           </a>
@@ -27,13 +27,13 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Instagram"
-            className="hover:text-primary transition-colors"
+            className="hover-glow hover:text-primary transition-colors"
           >
             <Instagram size={20} />
           </a>
           <button
             onClick={scrollToTop}
-            className="hover:text-primary transition-colors"
+            className="hover-glow hover:text-primary transition-colors"
             aria-label="Voltar ao topo"
           >
             <ArrowUp size={20} />
