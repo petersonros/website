@@ -27,11 +27,15 @@ export default async function TutorialPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const entry = getAllEntries("tutoriais").find((e) => e.slug === slug);
   const { default: Post } = await import(`@/content/tutoriais/${slug}.mdx`);
 
   return (
     <SectionWrapper>
       <article className="max-w-3xl mx-auto min-w-0 w-full">
+        <h1 className="font-sans text-3xl md:text-4xl font-bold mb-4">
+          {entry?.title}
+        </h1>
         <Post />
         <Link
           href="/tutoriais"
