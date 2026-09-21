@@ -39,6 +39,7 @@ export type ContentEntryMeta = {
   category?: ScratchCategory;
   aula?: number;
   sb3Download?: string;
+  project?: string;
 };
 
 export type ShufflingTitleProps = {

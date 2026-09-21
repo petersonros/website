@@ -48,10 +48,12 @@ export default async function ScratchEntryPage({
         )}
         <Post />
         <Link
-          href="/scratch"
+          href={entry?.project === "pacman" ? "/scratch/pacman" : "/scratch"}
           className="mt-8 inline-block text-primary hover:underline"
         >
-          ← Voltar para Scratch
+          {entry?.project === "pacman"
+            ? "← Voltar para o Guia Pac-Man"
+            : "← Voltar para Scratch"}
         </Link>
       </article>
     </section>

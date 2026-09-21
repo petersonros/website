@@ -16,12 +16,22 @@ const CATEGORY_CLASS: Record<ScratchCategory, string> = {
   operators: "scratch-block--operators",
 };
 
+const PROJECTS: Record<string, { title: string; description: string; href: string; className: string }> = {
+  pacman: {
+    title: "Pac-Man",
+    description:
+      "Um Pac-Man completo, construído ao vivo com a turma, capítulo por capítulo.",
+    href: "/scratch/pacman",
+    className: "scratch-block--control",
+  },
+};
+
 export default function ScratchPage() {
   const entries = getAllEntries("scratch");
-  const chapters = entries
-    .filter((entry) => entry.aula !== undefined)
-    .sort((a, b) => (a.aula as number) - (b.aula as number));
-  const guides = entries.filter((entry) => entry.aula === undefined);
+  const projectIds = Array.from(
+    new Set(entries.filter((entry) => entry.project).map((entry) => entry.project as string))
+  );
+  const guides = entries.filter((entry) => !entry.project);
 
   return (
     <section className="scratch-panel pt-24 md:pt-32 pb-20 px-4 min-h-screen">
@@ -34,25 +44,35 @@ export default function ScratchPage() {
           </p>
         </div>
 
-        {chapters.length > 0 && (
+        {projectIds.length > 0 && (
           <div className="space-y-4">
-            <h2 className="text-xl font-bold tracking-tight">Guia Pac-Man</h2>
+            <h2 className="text-xl font-bold tracking-tight">Projetos</h2>
             <div className="grid sm:grid-cols-2 gap-8">
-              {chapters.map((entry) => (
-                <Link
-                  key={entry.slug}
-                  href={`/scratch/${entry.slug}`}
-                  className="scratch-block scratch-block--neutral hover:brightness-95 transition-all"
-                >
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <h3 className="text-lg font-bold">{entry.title}</h3>
-                    <span className="scratch-chapter-badge shrink-0">
-                      Aula {entry.aula}
-                    </span>
-                  </div>
-                  <p className="text-sm opacity-90">{entry.summary}</p>
-                </Link>
-              ))}
+              {projectIds.map((projectId) => {
+                const project = PROJECTS[projectId];
+                const chapterCount = entries.filter(
+                  (entry) => entry.project === projectId
+                ).length;
+                return (
+                  <Link
+                    key={projectId}
+                    href={project?.href ?? `/scratch/${projectId}`}
+                    className={`scratch-block ${
+                      project?.className ?? "scratch-block--control"
+                    } hover:brightness-110 transition-all`}
+                  >
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <h3 className="text-lg font-bold">
+                        {project?.title ?? projectId}
+                      </h3>
+                      <span className="scratch-chapter-badge shrink-0">
+                        {chapterCount} capítulos
+                      </span>
+                    </div>
+                    <p className="text-sm opacity-90">{project?.description}</p>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         )}
