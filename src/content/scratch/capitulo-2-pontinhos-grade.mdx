@@ -8,11 +8,9 @@ project: "pacman"
 sb3Download: "/scratch/capitulo-2.sb3"
 ---
 
-> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu na Aula 2, não um roteiro fechado escrito antes.
+## Contexto
 
-## Contexto da aula
-
-Na Aula 1, o Pac-Man já andava pelo labirinto. Mas um labirinto vazio não é um jogo — faltam os pontinhos pra comer. O desafio que a turma enfrentou: **como colocar centenas de pontinhos no mapa sem arrastar um por um?**
+No Capítulo 1, o Pac-Man já andava pelo labirinto. Mas um labirinto vazio não é um jogo — faltam os pontinhos pra comer. O desafio: **como colocar centenas de pontinhos no mapa sem arrastar um por um?**
 
 A resposta foi um conceito novo: **clones**. Em vez de desenhar cada pontinho, criamos **um único sprite de pontinho** e deixamos o código criar cópias dele, nas posições certas, automaticamente.
 
@@ -35,7 +33,7 @@ Repita (17) vezes
 Esconda
 ```
 
-> 💡 **Para a turma — a matemática por trás do "repita dentro do repita":** o `repita 23 vezes` de dentro é uma **coluna** sendo preenchida da esquerda pra direita (23 pontinhos, um do lado do outro). O `repita 17 vezes` de fora é **quantas vezes repetimos essa coluna inteira**, subindo uma linha a cada vez (17 linhas). Ou seja: **17 linhas × 23 colunas = 391 pontinhos** — é multiplicação de verdade, só que o computador faz a conta na prática, criando um clone por vez em vez de calcular o resultado.
+> 💡 **Dica — a matemática por trás do "repita dentro do repita":** o `repita 23 vezes` de dentro é uma **coluna** sendo preenchida da esquerda pra direita (23 pontinhos, um do lado do outro). O `repita 17 vezes` de fora é **quantas vezes repetimos essa coluna inteira**, subindo uma linha a cada vez (17 linhas). Ou seja: **17 linhas × 23 colunas = 391 pontinhos** — é multiplicação de verdade, só que o computador faz a conta na prática, criando um clone por vez em vez de calcular o resultado.
 
 ### 2. Cada pontinho decide sozinho se pode existir ali
 
@@ -49,15 +47,15 @@ Espere até <tocando em [pacman]?>
 Apague este clone
 ```
 
-> 💡 **Para a turma:** a grade criou pontinhos em cima das paredes também — mas cada um deles, no instante em que nasce, checa a cor debaixo dele. Se for parede, ele se apaga sozinho, na hora. Sobra só os pontinhos que caíram nos corredores. É mais simples deixar o próprio pontinho decidir isso do que a gente calcular à mão onde estão os corredores.
+> 💡 **Dica:** a grade criou pontinhos em cima das paredes também — mas cada um deles, no instante em que nasce, checa a cor debaixo dele. Se for parede, ele se apaga sozinho, na hora. Sobra só os pontinhos que caíram nos corredores. É mais simples deixar o próprio pontinho decidir isso do que a gente calcular à mão onde estão os corredores.
 
 Depois disso, o mesmo clone fica esperando até o Pac-Man tocar nele — e aí se apaga também, como se tivesse sido "comido".
 
-## Checklist do que a turma alcançou
+## Checklist do capítulo
 
 - [ ] O labirinto aparece cheio de pontinhos, só nos corredores (nenhum em cima de parede)
-- [ ] A turma entende a relação entre "repita dentro de repita" e "linhas × colunas"
-- [ ] A turma sabe dizer quantos pontinhos a grade tenta criar (17 × 23 = 391), mesmo sabendo que nem todos sobrevivem
+- [ ] Ficou clara a relação entre "repita dentro de repita" e "linhas × colunas"
+- [ ] Dá pra dizer quantos pontinhos a grade tenta criar (17 × 23 = 391), mesmo sabendo que nem todos sobrevivem
 - [ ] O pontinho some quando o Pac-Man toca nele
 
 ## O que ainda não existe nessa etapa

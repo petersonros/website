@@ -8,15 +8,13 @@ project: "pacman"
 sb3Download: "/scratch/capitulo-4.sb3"
 ---
 
-> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu na Aula 4, não um roteiro fechado escrito antes.
+## Contexto
 
-## Contexto da aula
+Até o Capítulo 3, comer um pontinho só fazia ele sumir — nada era contado, e o jogo não tinha como saber quando tinha acabado. Este capítulo é dedicado a um conceito só, com calma: **o que é uma variável**.
 
-Até a Aula 3, comer um pontinho só fazia ele sumir — nada era contado, e o jogo não tinha como saber quando tinha acabado. Essa aula foi dedicada a um conceito só, com calma: **o que é uma variável**.
+> 💡 **Dica:** uma variável é uma caixinha com um número dentro, com um nome escrito nela. Qualquer script pode olhar o que tem dentro, **somar**, **diminuir**, ou **trocar completamente** o número — o Scratch não liga pra quem mexeu ou quando, só guarda o valor atual.
 
-> 💡 **Para a turma:** uma variável é uma caixinha com um número dentro, com um nome escrito nela. Qualquer script pode olhar o que tem dentro, **somar**, **diminuir**, ou **trocar completamente** o número — o Scratch não liga pra quem mexeu ou quando, só guarda o valor atual.
-
-A turma criou a variável **`Pontos`**.
+Este capítulo cria a variável **`Pontos`**.
 
 ## O que construímos
 
@@ -35,11 +33,11 @@ Esconda
 Transmita [Jogo Pronto]
 ```
 
-> 💡 **Para a turma:** por que zerar `Pontos` logo no início, se ele já começa em 0? Porque se o jogador clicar na bandeira verde de novo pra jogar outra partida, `Pontos` pode ter ficado com o valor da partida anterior. Zerar aqui garante que toda partida nova começa do mesmo jeito.
+> 💡 **Dica:** por que zerar `Pontos` logo no início, se ele já começa em 0? Porque se o jogador clicar na bandeira verde de novo pra jogar outra partida, `Pontos` pode ter ficado com o valor da partida anterior. Zerar aqui garante que toda partida nova começa do mesmo jeito.
 
-### 2. A parte que surpreendeu a turma: `Pontos` sobe e desce na mesma aula
+### 2. `Pontos` sobe e desce no mesmo capítulo
 
-Em vez de só contar pontinhos comidos, a turma decidiu usar a mesma variável pra **duas coisas diferentes**, uma depois da outra:
+Em vez de só contar pontinhos comidos, a mesma variável serve pra **duas coisas diferentes**, uma depois da outra:
 
 ```
 Quando eu começar como um clone
@@ -52,7 +50,7 @@ mude [Pontos] por (-1)
 Apague este clone
 ```
 
-> 💡 **Para a turma — por que somar 1 logo de cara, se o pontinho pode estar em cima de uma parede?** Cada clone, assim que nasce, soma 1 em `Pontos` — **mesmo os que vão morrer em cima de uma parede**. Se ele estiver numa parede, a gente desfaz isso na mesma hora (`-1`) e apaga o clone. No fim, depois que a grade inteira termina de nascer, `Pontos` fica exatamente com a quantidade de pontinhos que **sobreviveram** — os que estão nos corredores. A partir daí, toda vez que o Pac-Man come um pontinho, `Pontos` desce 1.
+> 💡 **Dica — por que somar 1 logo de cara, se o pontinho pode estar em cima de uma parede?** Cada clone, assim que nasce, soma 1 em `Pontos` — **mesmo os que vão morrer em cima de uma parede**. Se ele estiver numa parede, a gente desfaz isso na mesma hora (`-1`) e apaga o clone. No fim, depois que a grade inteira termina de nascer, `Pontos` fica exatamente com a quantidade de pontinhos que **sobreviveram** — os que estão nos corredores. A partir daí, toda vez que o Pac-Man come um pontinho, `Pontos` desce 1.
 
 Ou seja: `Pontos` **sobe** enquanto o labirinto está sendo montado, e **desce** enquanto o jogo está sendo jogado. É a mesma variável, fazendo dois trabalhos diferentes em momentos diferentes — o número não "sabe" que mudou de função, só o código decide o que fazer com ele a cada momento.
 
@@ -78,12 +76,12 @@ Mude para a fantasia [fim]
 Mostre
 ```
 
-> 💡 **Para a turma:** repara que ninguém "avisa" o pacman ou a tela que o jogo acabou — os dois ficam de olho em `Pontos` por conta própria, o tempo todo, esperando ele chegar a zero. É uma forma diferente de "saber que algo aconteceu" do que usar mensagens (Aula 3): em vez de alguém transmitir um aviso, cada script fica checando o valor sozinho.
+> 💡 **Dica:** repara que ninguém "avisa" o pacman ou a tela que o jogo acabou — os dois ficam de olho em `Pontos` por conta própria, o tempo todo, esperando ele chegar a zero. É uma forma diferente de "saber que algo aconteceu" do que usar mensagens (Aula 3): em vez de alguém transmitir um aviso, cada script fica checando o valor sozinho.
 
-## Checklist do que a turma alcançou
+## Checklist do capítulo
 
-- [ ] A turma consegue explicar com as próprias palavras o que é uma variável
-- [ ] A turma entende por que `Pontos` sobe durante a criação da grade e desce durante o jogo
+- [ ] Dá pra explicar com as próprias palavras o que é uma variável
+- [ ] Ficou claro por que `Pontos` sobe durante a criação da grade e desce durante o jogo
 - [ ] O placar de `Pontos` aparece visível na tela durante o jogo
 - [ ] O jogo para sozinho quando todos os pontinhos são comidos
 

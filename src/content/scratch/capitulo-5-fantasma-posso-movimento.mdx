@@ -8,19 +8,17 @@ project: "pacman"
 sb3Download: "/scratch/capitulo-5.sb3"
 ---
 
-> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu, não um roteiro fechado escrito antes. A construção do fantasma ocupou duas aulas inteiras; este capítulo cobre a primeira metade.
+## Contexto
 
-## Contexto da aula
-
-Até aqui, todo o labirinto e a lógica giravam em torno do Pac-Man. Nessa aula, a turma começou o primeiro fantasma — o **Amarelo**. Antes de pensar em "perseguir o Pac-Man", tinha um problema mais básico pra resolver: **como o fantasma sabe se tem parede na frente dele?**
+Até aqui, todo o labirinto e a lógica giravam em torno do Pac-Man. A construção do fantasma ocupa dois capítulos; este cobre a primeira metade, começando pelo primeiro fantasma — o **Amarelo**. Antes de pensar em "perseguir o Pac-Man", tinha um problema mais básico pra resolver: **como o fantasma sabe se tem parede na frente dele?**
 
 O Pac-Man resolve isso de um jeito simples (checa se a cor embaixo dele é preta). Mas um fantasma precisa saber, **ao mesmo tempo**, se pode ir pra cima, baixo, esquerda ou direita — pra decidir qual direção escolher. Isso pediu uma solução nova.
 
 ## Blocos personalizados: um conceito novo
 
-Antes do código, um conceito: até agora, cada comportamento ficava dentro de um `Para sempre` só. Só que a lógica do fantasma ia ficar grande e ia se repetir bastante (e ainda por cima, ia se repetir em **4 fantasmas diferentes** nas próximas aulas). A turma aprendeu a criar **blocos personalizados** — blocos com nome próprio, que a gente monta uma vez e chama sempre que precisar, como se fosse um bloco pronto do Scratch.
+Antes do código, um conceito: até agora, cada comportamento ficava dentro de um `Para sempre` só. Só que a lógica do fantasma ia ficar grande e ia se repetir bastante (e ainda por cima, ia se repetir em **4 fantasmas diferentes** nos próximos capítulos). Este é o momento de criar **blocos personalizados** — blocos com nome próprio, que a gente monta uma vez e chama sempre que precisar, como se fosse um bloco pronto do Scratch.
 
-> 💡 **Para a turma:** é como ensinar uma palavra nova pro Scratch. Em vez de repetir os mesmos 10 blocos toda vez, a gente cria um bloco chamado, por exemplo, `posso`, ensina uma vez o que ele significa, e depois só chama `posso` sempre que precisar daquilo.
+> 💡 **Dica:** é como ensinar uma palavra nova pro Scratch. Em vez de repetir os mesmos 10 blocos toda vez, a gente cria um bloco chamado, por exemplo, `posso`, ensina uma vez o que ele significa, e depois só chama `posso` sempre que precisar daquilo.
 
 ## O truque dos sensores coloridos
 
@@ -41,7 +39,7 @@ Se <não <(cor vermelho tocando preto) e (cor vermelho tocando a cor da caixa)>>
   junte [posso] com [B]      → pode ir pra Baixo
 ```
 
-> 💡 **Para a turma:** o resultado vira uma palavra tipo `"DCB"` — cada letra é uma direção livre naquele instante. Se o bigode de baixo está tocando parede, o "B" simplesmente não entra na palavra. É uma lista de direções possíveis, guardada como texto.
+> 💡 **Dica:** o resultado vira uma palavra tipo `"DCB"` — cada letra é uma direção livre naquele instante. Se o bigode de baixo está tocando parede, o "B" simplesmente não entra na palavra. É uma lista de direções possíveis, guardada como texto.
 
 > 🔍 **Detalhe a mais no sensor de baixo:** ele também checa uma segunda cor — a cor da porta da caixinha onde os fantasmas nascem. Isso existe pra o fantasma não tentar voltar pra dentro da caixa sozinho enquanto está rodando pelo labirinto (só volta lá quando é comido — isso é assunto do próximo capítulo).
 
@@ -58,14 +56,14 @@ Se <(valor) = [B]> então  mude y por (-20)
 defina [movimento anterior] para (valor)
 ```
 
-> 💡 **Para a turma — primeiro bloco com parâmetro:** repara que `movimento` não é chamado sozinho — a gente passa **qual direção** ele deve mover (`movimento D`, `movimento E`...). É a mesma ideia de quando o `mova (20) passos` do Pac-Man pede um número — só que aqui a gente criou nosso próprio bloco que pede uma informação.
+> 💡 **Dica — primeiro bloco com parâmetro:** repara que `movimento` não é chamado sozinho — a gente passa **qual direção** ele deve mover (`movimento D`, `movimento E`...). É a mesma ideia de quando o `mova (20) passos` do Pac-Man pede um número — só que aqui a gente criou nosso próprio bloco que pede uma informação.
 
 A última linha guarda a direção usada numa variável chamada `movimento anterior` — isso ainda não faz nada sozinho, mas vai ser importante no próximo capítulo, pra o fantasma não ficar "tremendo" voltando pra trás toda hora.
 
-## Checklist do que a turma alcançou
+## Checklist do capítulo
 
-- [ ] A turma entende por que criar um bloco personalizado em vez de repetir os mesmos blocos várias vezes
-- [ ] A turma consegue explicar o truque dos sensores coloridos com as próprias palavras
+- [ ] Ficou claro por que criar um bloco personalizado em vez de repetir os mesmos blocos várias vezes
+- [ ] Dá pra explicar o truque dos sensores coloridos com as próprias palavras
 - [ ] O bloco `posso` monta corretamente a lista de direções livres
 - [ ] O bloco `movimento` move o fantasma na direção pedida como parâmetro
 

@@ -1,6 +1,6 @@
 ---
 title: "Capítulo 1 — O Pac-Man aprende a andar"
-summary: "Primeira aula da série: partindo do mapa e dos sprites já prontos, construímos com a turma a lógica de movimento do Pac-Man pelo labirinto."
+summary: "Primeira aula da série: partindo do mapa e dos sprites já prontos, construímos a lógica de movimento do Pac-Man pelo labirinto."
 date: "2026-09-24"
 status: "publicado"
 aula: 1
@@ -8,13 +8,11 @@ project: "pacman"
 sb3Download: "/scratch/capitulo-1.sb3"
 ---
 
-> Esse guia documenta uma série que está sendo construída **ao vivo, em sala de aula**, em aulas de 45 minutos — as decisões abaixo foram tomadas com a turma, no ritmo que fazia sentido pra eles. Não é um roteiro fechado escrito antes; é o registro do que realmente aconteceu.
+## Ponto de partida
 
-## Contexto da aula
+Diferente de montar um projeto do zero, este guia parte do **mapa do labirinto e todos os sprites já prontos** (Pac-Man, fantasmas, pontinhos, telas) — desenhados e posicionados de antemão, pra focar em uma coisa por vez: **montar a lógica**, sem se perder desenhando ou procurando imagens.
 
-Diferente de montar um projeto do zero, começamos com o **mapa do labirinto e todos os sprites já prontos** (Pac-Man, fantasmas, pontinhos, telas) — desenhados e posicionados antes da aula. A ideia foi deixar a turma focar só em uma coisa por vez: **montar a lógica**, sem se perder desenhando ou procurando imagens.
-
-Nessa primeira aula, o objetivo foi só um: **fazer o Pac-Man andar pelo labirinto sem atravessar as paredes.**
+O objetivo deste capítulo é só um: **fazer o Pac-Man andar pelo labirinto sem atravessar as paredes.**
 
 ## O que construímos
 
@@ -22,7 +20,7 @@ Dois scripts, os dois no sprite do Pac-Man:
 
 ### 1. Controlar a direção com o teclado
 
-A turma decidiu aceitar tanto as setas quanto WASD, pra ninguém ficar de fora por causa do teclado:
+O controle aceita tanto as setas quanto WASD, pra ninguém ficar de fora por causa do teclado:
 
 ```
 Quando a bandeira verde for clicada
@@ -48,11 +46,11 @@ Para sempre
   Espere (0.1) segundos
 ```
 
-> 💡 **Para a turma:** o labirinto não é um sprite, é o **cenário** (o fundo). Então "bater na parede" não é tocar em outro sprite — é o Pac-Man checar a **cor** que tem embaixo dele. Se for a cor das paredes do labirinto, ele volta o passo que acabou de dar. É um truque simples, mas resolve o problema sem precisar de nada complicado.
+> 💡 **Dica:** o labirinto não é um sprite, é o **cenário** (o fundo). Então "bater na parede" não é tocar em outro sprite — é o Pac-Man checar a **cor** que tem embaixo dele. Se for a cor das paredes do labirinto, ele volta o passo que acabou de dar. É um truque simples, mas resolve o problema sem precisar de nada complicado.
 
 ## Por que dois scripts separados?
 
-Essa foi uma pergunta que surgiu na própria aula: por que não colocar tudo dentro de um script só? A resposta que fica pro grupo perceber: os dois `Para sempre` rodam **ao mesmo tempo**, em paralelo — um cuida só de "pra que lado eu tô olhando", o outro cuida só de "andar pra frente e não atravessar parede". Separar deixa cada script simples de entender sozinho.
+Por que não colocar tudo dentro de um script só? Os dois `Para sempre` rodam **ao mesmo tempo**, em paralelo — um cuida só de "pra que lado eu tô olhando", o outro cuida só de "andar pra frente e não atravessar parede". Separar deixa cada script simples de entender sozinho.
 
 ## O que ainda não existe nessa etapa
 
@@ -63,9 +61,9 @@ Pra deixar claro o estado real do jogo no fim da Aula 1:
 
 Essas peças vêm nas próximas aulas.
 
-## Checklist do que a turma alcançou
+## Checklist do capítulo
 
 - [ ] O Pac-Man se move para os 4 lados usando setas ou WASD
 - [ ] O Pac-Man para de andar (e volta) ao encostar numa parede do labirinto
 - [ ] Os dois scripts rodam ao mesmo tempo sem interferir um no outro
-- [ ] A turma entende por que "tocar na cor" resolve a colisão com um cenário desenhado
+- [ ] Ficou claro por que "tocar na cor" resolve a colisão com um cenário desenhado

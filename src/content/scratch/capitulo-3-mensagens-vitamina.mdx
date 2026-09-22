@@ -8,15 +8,13 @@ project: "pacman"
 sb3Download: "/scratch/capitulo-3.sb3"
 ---
 
-> Guia em construção ao vivo com a turma — este capítulo documenta o que realmente aconteceu na Aula 3, não um roteiro fechado escrito antes.
+## Contexto
 
-## Contexto da aula
+Depois do Capítulo 2, o jogo tinha um problema visível: assim que clicava na bandeira verde, o Pac-Man **já saía andando**, ao mesmo tempo em que os 391 pontinhos ainda estavam sendo criados na tela. Ficava tudo acontecendo ao mesmo tempo, sem ordem.
 
-Depois da Aula 2, o jogo tinha um problema visível: assim que clicava na bandeira verde, o Pac-Man **já saía andando**, ao mesmo tempo em que os 391 pontinhos ainda estavam sendo criados na tela. Ficava tudo acontecendo ao mesmo tempo, sem ordem.
+O conceito deste capítulo resolve exatamente isso: **transmitir e receber mensagens.**
 
-O conceito da Aula 3 resolve exatamente isso, e foi o que recebeu mais atenção nessa aula: **transmitir e receber mensagens.**
-
-> 💡 **Para a turma:** pensa numa mensagem como um aviso de rádio. Um sprite **transmite** um aviso (ex: "Jogo Pronto!") sem saber quem está ouvinho. Qualquer outro sprite pode **receber** esse aviso e decidir o que fazer quando ele chegar. Ninguém precisa saber o nome de quem transmitiu — só precisa saber qual aviso está esperando.
+> 💡 **Dica:** pensa numa mensagem como um aviso de rádio. Um sprite **transmite** um aviso (ex: "Jogo Pronto!") sem saber quem está ouvinho. Qualquer outro sprite pode **receber** esse aviso e decidir o que fazer quando ele chegar. Ninguém precisa saber o nome de quem transmitiu — só precisa saber qual aviso está esperando.
 
 ## O que construímos
 
@@ -79,7 +77,7 @@ Mude para a fantasia [fim]
 Mostre
 ```
 
-> 💡 **Para a turma:** repara que **três scripts diferentes** reagem a três mensagens diferentes, cada um cuidando só da sua parte — nenhum precisa saber o que os outros fazem. É a mesma ideia de "cada um recebe o aviso que importa pra ele".
+> 💡 **Dica:** repara que **três scripts diferentes** reagem a três mensagens diferentes, cada um cuidando só da sua parte — nenhum precisa saber o que os outros fazem. É a mesma ideia de "cada um recebe o aviso que importa pra ele".
 
 ### 4. A Vitamina entra no jogo
 
@@ -112,13 +110,13 @@ Espere até <tocando em [pacman]?>
 Apague este clone
 ```
 
-> 💡 **Para a turma:** repara que a Vitamina usa a mesma ideia de clones da Aula 2 (criar cópias em vez de desenhar 4 sprites separados), só que aqui em 4 posições fixas, em vez de uma grade inteira.
+> 💡 **Dica:** repara que a Vitamina usa a mesma ideia de clones da Aula 2 (criar cópias em vez de desenhar 4 sprites separados), só que aqui em 4 posições fixas, em vez de uma grade inteira.
 
-## Checklist do que a turma alcançou
+## Checklist do capítulo
 
 - [ ] O Pac-Man só começa a andar depois que os pontinhos terminam de aparecer **e** o jogador aperta espaço
 - [ ] A tela inicial some sozinha assim que o jogo fica pronto e o espaço é pressionado
-- [ ] A turma sabe explicar a diferença entre "transmitir" e "receber" com as próprias palavras
+- [ ] Dá pra explicar a diferença entre "transmitir" e "receber" com as próprias palavras
 - [ ] A Vitamina aparece piscando nos 4 cantos do labirinto e some ao ser tocada pelo Pac-Man
 
 ## O que ainda não existe nessa etapa
