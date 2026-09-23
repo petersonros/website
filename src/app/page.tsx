@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GraduationCap, ArrowRight } from "lucide-react";
+import { GraduationCap, BookOpen, ArrowRight } from "lucide-react";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 
@@ -9,6 +9,12 @@ const ctaCards = [
     label: "Formação ADS",
     description: "Trajetória do curso e trabalhos de extensão.",
     icon: GraduationCap,
+  },
+  {
+    href: "/tutoriais",
+    label: "Tutoriais",
+    description: "Git, deploy e organização de projetos.",
+    icon: BookOpen,
   },
 ];
 
@@ -33,12 +39,12 @@ export default function HomePage() {
       </section>
 
       <section className="py-16 px-4 bg-background text-foreground border-t border-border">
-        <div className="max-w-6xl mx-auto flex justify-center">
+        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 gap-6 justify-center">
           {ctaCards.map(({ href, label, description, icon: Icon }) => (
             <Link
               key={href}
               href={href}
-              className="hover-accent-border w-full max-w-sm rounded-lg border border-border bg-card p-6 hover:shadow-lg transition-all"
+              className="hover-accent-border w-full max-w-sm mx-auto sm:mx-0 rounded-lg border border-border bg-card p-6 hover:shadow-lg transition-all"
             >
               <Icon className="text-primary mb-3" size={28} />
               <div className="font-semibold text-lg mb-1">{label}</div>

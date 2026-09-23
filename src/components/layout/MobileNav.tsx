@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, User, GraduationCap, FolderGit2 } from "lucide-react";
+import { Home, User, GraduationCap, FolderGit2, BookOpen } from "lucide-react";
 
 interface Props {
   closeMenu: () => void;
@@ -15,6 +15,7 @@ const navItems = [
   { href: "/sobre", label: "Sobre", icon: User },
   { href: "/formacao", label: "Formação", icon: GraduationCap },
   { href: "/projetos", label: "Portfólio", icon: FolderGit2 },
+  { href: "/tutoriais", label: "Tutoriais", icon: BookOpen },
 ];
 
 export function MobileNav({ closeMenu }: Props) {

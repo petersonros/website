@@ -1,14 +1,137 @@
 ---
 title: "Configurando múltiplas contas Git/GitHub"
-summary: "Guia de configuração de múltiplas contas GitHub na mesma máquina, usando SSH e includeIf."
-date: "2026-09-17"
-status: "em-breve"
+summary: "Guia de configuração de múltiplas contas GitHub na mesma máquina, usando SSH e includeIf — sem risco de commitar com a identidade errada."
+date: "2026-09-23"
+status: "publicado"
 tags: ["git", "ssh", "github"]
 ---
 
-Guia e configuração de múltiplas contas GitHub na mesma máquina — chaves SSH
-separadas por conta e `includeIf` no `.gitconfig` para trocar de identidade
-automaticamente dependendo da pasta do repositório.
+## O problema que motivou esse guia
 
-> **Em breve.** Este tutorial ainda não foi escrito — o passo a passo completo
-> será publicado aqui assim que o material de origem for organizado.
+Um commit foi enviado num repositório da conta **Conta A**, mas apareceu atribuído à conta **Conta B** no GitHub. A causa: duas coisas parecidas, mas independentes, estavam sendo tratadas como se fossem uma só —
+
+- **Autenticação (SSH):** decide *quem tem permissão* pra enviar (`push`) pra um repositório
+- **Autoria (commit):** decide *a quem o commit é atribuído*, baseado no `user.email` configurado — e só conta se esse e-mail estiver verificado na conta correspondente no GitHub
+
+É possível estar autenticado com uma conta e, ao mesmo tempo, commitando com o e-mail de outra — o Git não impede isso sozinho. A solução deste guia resolve as duas coisas ao mesmo tempo, automaticamente, baseada em **qual pasta** o repositório está.
+
+## Ideia geral
+
+1. Uma chave SSH separada pra cada conta
+2. Um apelido de host no `~/.ssh/config` pra cada conta, forçando qual chave usar
+3. Uma pasta separada pra cada conta
+4. Um `.gitconfig` por conta, ativado automaticamente pela pasta (`includeIf`)
+
+Depois de configurado, o único cuidado é: **clonar/criar repositórios sempre dentro da pasta certa, usando o apelido de host certo**. A partir daí, autenticação e autoria resolvem sozinhas.
+
+## Passo 1 — Gerar uma chave SSH por conta
+
+Se já existe uma chave SSH padrão (`~/.ssh/id_ed25519`) e ela já pertence a uma das contas, só falta gerar a da outra:
+
+```bash
+ssh-keygen -t ed25519 -C "seu-email@dominio.com" -f ~/.ssh/id_ed25519_conta-a
+```
+
+Aceita passphrase opcional (Enter duas vezes pra deixar em branco). Isso gera dois arquivos: a chave privada (`id_ed25519_conta-a`, nunca compartilhar) e a pública (`.pub`, essa sim vai pro GitHub).
+
+## Passo 2 — Cadastrar cada chave na conta certa
+
+Pra cada conta, logado nela no navegador: **Settings → SSH and GPG keys → New SSH key**, cola o conteúdo da chave pública (`cat ~/.ssh/id_ed25519_conta-a.pub`) e salva com um título que identifique a máquina.
+
+## Passo 3 — Apelidos de host no SSH config
+
+Criar/editar `~/.ssh/config` (no Windows: `%USERPROFILE%\.ssh\config`):
+
+```
+Host github-conta-a
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_conta-a
+
+Host github-conta-b
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_conta-b
+```
+
+Testar cada apelido:
+
+```bash
+ssh -T github-conta-a
+ssh -T github-conta-b
+```
+
+A resposta esperada é uma mensagem confirmando o usuário autenticado (não é erro — o SSH do GitHub sempre recusa uma sessão interativa completa, só confirma quem você é).
+
+## Passo 4 — Estrutura de pastas por conta
+
+```
+~/Github/conta-a/   → repositórios da Conta A
+~/Github/conta-b/   → repositórios da Conta B
+```
+
+Pastas que não são repositórios Git (scripts soltos, downloads, etc.) ficam de fora desse esquema, na raiz.
+
+## Passo 5 — `.gitconfig` por conta, ativado por pasta
+
+Criar um arquivo de configuração por conta:
+
+```
+# ~/.gitconfig-conta-a
+[user]
+  name = Conta A
+  email = conta-a@dominio.com
+```
+
+```
+# ~/.gitconfig-conta-b
+[user]
+  name = Conta B
+  email = conta-b@dominio.com
+```
+
+E no `~/.gitconfig` principal, incluir condicionalmente cada um conforme a pasta:
+
+```
+[includeIf "gitdir:~/Github/conta-a/"]
+  path = ~/.gitconfig-conta-a
+
+[includeIf "gitdir:~/Github/conta-b/"]
+  path = ~/.gitconfig-conta-b
+```
+
+A partir daqui, qualquer repositório dentro de `~/Github/conta-a/` usa automaticamente o `user.email` certo — sem precisar configurar `git config user.email` manualmente em cada repositório.
+
+> ⚠️ **No Windows**, o caminho do `gitdir:` precisa estar no formato Unix-like, com barra normal — `C:/github/conta-a/` — mesmo que os comandos do PowerShell usem barra invertida normalmente. É um detalhe fácil de esquecer e que quebra o `includeIf` silenciosamente se sair errado.
+
+## Passo 6 — Migrar repositórios já existentes
+
+Pra cada repositório já clonado antes dessa organização: mover a pasta pra dentro da conta certa, e trocar o remoto de HTTPS pra SSH usando o apelido de host:
+
+```bash
+git remote set-url origin git@github-conta-a:conta-a/nome-do-repo.git
+```
+
+No Windows, vale criar as pastas de destino **antes** de mover os repositórios — mover pra uma pasta que ainda não existe falha silenciosamente em alguns scripts de automação.
+
+## Passo 7 — Teste de ponta a ponta
+
+Dentro de um repositório já migrado:
+
+```bash
+git config user.email
+git pull
+```
+
+O e-mail exibido deve ser o da conta certa, e o `pull` deve funcionar direto, sem pedir usuário/senha — sinal de que a autenticação SSH está ativa e a autoria está correta ao mesmo tempo.
+
+## Resumo de referência
+
+| Conta | E-mail | Apelido SSH (Host) | Pasta |
+|---|---|---|---|
+| Conta A | conta-a@dominio.com | `github-conta-a` | `~/Github/conta-a/` |
+| Conta B | conta-b@dominio.com | `github-conta-b` | `~/Github/conta-b/` |
+
+## Hábito que evita voltar a esse problema
+
+Sempre clonar ou criar um repositório novo **de dentro da pasta certa**, usando o **apelido de host certo** no remoto. Feito isso uma vez por repositório, autenticação e autoria seguem corretas em todo `push`/`pull` seguinte, sem precisar pensar nisso de novo.
