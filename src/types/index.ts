@@ -27,6 +27,7 @@ export type ProjectCardProps = {
 export type Project = ProjectCardProps;
 
 export type ContentStatus = "em-breve" | "publicado";
+export type ContentKind = "tutorial" | "relato";
 export type ScratchCategory = "movement" | "control" | "operators";
 
 export type ContentEntryMeta = {
@@ -35,6 +36,7 @@ export type ContentEntryMeta = {
   summary: string;
   date: string;
   status: ContentStatus;
+  kind?: ContentKind;
   tags?: string[];
   category?: ScratchCategory;
   aula?: number;

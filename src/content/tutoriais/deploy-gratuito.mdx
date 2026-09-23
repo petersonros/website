@@ -1,14 +1,50 @@
 ---
-title: "Deploy gratuito: Vercel, Render e Neon"
-summary: "Como publicar projetos pessoais sem custo usando Vercel (frontend), Render (backend) e Neon (PostgreSQL)."
-date: "2026-09-10"
-status: "em-breve"
+title: "Deploy gratuito: o problema e as decisões, não o passo a passo"
+summary: "Um relato de como decidi onde hospedar projetos pessoais sem custo — as escolhas, os imprevistos e o raciocínio por trás delas, não um passo a passo de telas que ficam desatualizadas."
+date: "2026-09-23"
+status: "publicado"
+kind: "relato"
 tags: ["deploy", "vercel", "render", "neon"]
 ---
 
-Notas práticas sobre publicar projetos pessoais sem custo: Vercel para o
-frontend Next.js, Render para serviços backend Node/Express e Neon como banco
-PostgreSQL gratuito — a mesma combinação usada no projeto Conquista.
+## Por que um relato, não um tutorial
 
-> **Em breve.** Este tutorial ainda não foi escrito — o passo a passo completo
-> será publicado aqui assim que o material de origem for organizado.
+Plataforma de deploy muda de interface, de preço e de limite do plano gratuito com uma frequência que nenhum tutorial de "clique aqui, depois aqui" acompanha. Um passo a passo escrito hoje corre risco real de estar errado daqui a poucos meses. O raciocínio por trás de cada escolha, não — por isso este texto conta **o problema e as decisões**, não os cliques. A ideia é que, lendo isso, você consiga montar seu próprio caminho na plataforma que escolher, mesmo que a tela dela seja diferente da que eu vi.
+
+## O problema
+
+Eu precisava publicar um sistema real — não um projeto de estudo, algo que pessoas de verdade iriam usar — sem nenhum custo envolvido. O sistema era feito em Next.js, com um banco de dados relacional por trás.
+
+## Primeira decisão: onde roda o quê
+
+Como o projeto era um Next.js completo (frontend e as rotas de API juntos, sem um servidor de backend separado), a primeira decisão foi simples: uma plataforma feita pra hospedar esse tipo de aplicação resolve os dois lados de uma vez, sem precisar administrar servidor nenhum. O banco de dados é outra história — a maioria dessas plataformas de frontend não hospeda banco, então precisei de um serviço separado só pra isso.
+
+Pra esse banco, o critério que mais pesou não foi "qual é mais famoso", foi um detalhe técnico específico: procurar um banco **serverless**, que "dorme" quando ninguém está usando e acorda sozinho quando chega uma requisição. Pra um sistema interno, de uso esporádico, isso é a diferença entre o plano gratuito durar pra sempre ou estourar rápido — bancos tradicionais cobram (ou limitam) pelo tempo que ficam ligados, não só pelo espaço usado.
+
+## O imprevisto: só um projeto grátis por conta
+
+Já no meio da configuração, esbarrei numa regra que não tinha lido antes: o plano gratuito do provedor de banco que escolhi permitia **só um projeto por conta** — e eu já tinha outro projeto pessoal (sem relação nenhuma com esse) usando essa mesma conta.
+
+Três caminhos possíveis:
+1. Criar uma **segunda conta** só pra esse projeto novo
+2. **Migrar** pra outra plataforma de banco, começando do zero
+3. Usar a **mesma conta e o mesmo projeto**, mas isolando os dados numa base separada dentro dele
+
+Descartei a primeira de cara — a maioria desses serviços proíbe explicitamente múltiplas contas gratuitas pra burlar o limite, nos termos de uso; não é um risco que vale correr por conveniência. Entre migrar e isolar, migrar significava reaprender uma plataforma nova sem necessidade nenhuma, já que a que eu tinha resolvia perfeitamente o problema técnico. Fui pela terceira opção: um banco novo, isolado, dentro do mesmo projeto/conta já existente. Resolveu sem custo, sem burlar termo nenhum, e sem aprender nada novo.
+
+## Quando o mesmo molde não serve
+
+Outro projeto meu, mais tarde, não se encaixava nesse formato — precisava de um processo de backend rodando de verdade (não só rotas de API dentro de um app de frontend), então usei um provedor diferente, pensado especificamente pra hospedar esse tipo de serviço contínuo.
+
+A primeira plataforma que escolhi pra isso deu um problema de autenticação que não consegui contornar — tentei por um tempo, e a solução mais prática acabou sendo migrar pra um provedor concorrente, com um fluxo de configuração mais direto pro que eu precisava. A lição aqui não foi técnica, foi de postura: a primeira escolha de plataforma não é definitiva, e trocar não é fracasso — é só reconhecer rápido quando algo não está fluindo e não insistir por teimosia.
+
+## O que vale carregar disso, independente de qual plataforma você escolher
+
+- Pra projetos de baixo tráfego, prefira serviços que "dormem" quando ociosos — é o que faz o plano gratuito durar
+- Descubra os limites do plano gratuito (quantos projetos, quantas contas) **antes** de esbarrar neles no meio do trabalho, não depois
+- Isolar dados dentro da mesma conta/projeto costuma resolver conflito de "só um projeto grátis", sem precisar multiplicar contas nem migrar de plataforma
+- Não tenha apego à primeira escolha — troca de provedor no meio do caminho é normal, principalmente enquanto o projeto ainda é pequeno e a migração é barata
+
+## Como usar isso na prática
+
+Quando for escolher sua própria stack de deploy gratuito, procure a documentação oficial e atual da plataforma que te interessar — ela vai ter os números certos de hoje, que este texto propositalmente não fixa. O que eu espero que fique é o **tipo de pergunta** a fazer antes de decidir: esse serviço dorme quando ocioso? Quantos projetos grátis eu tenho direito? O que acontece se eu precisar de um segundo projeto? Essas perguntas continuam valendo, mesmo quando as respostas específicas mudam.

@@ -35,11 +35,16 @@ export default function TutoriaisPage() {
             >
               <div className="flex items-center justify-between gap-2 mb-2">
                 <h2 className="text-xl font-semibold">{entry.title}</h2>
-                {entry.status === "em-breve" && (
-                  <span className="font-mono text-[10px] uppercase tracking-wide border border-border rounded-full px-2 py-0.5 text-muted-foreground shrink-0">
-                    em breve
+                <div className="flex items-center gap-2 shrink-0">
+                  <span className="font-mono text-[10px] uppercase tracking-wide border border-border rounded-full px-2 py-0.5 text-muted-foreground">
+                    {entry.kind === "relato" ? "Relato" : "Tutorial"}
                   </span>
-                )}
+                  {entry.status === "em-breve" && (
+                    <span className="font-mono text-[10px] uppercase tracking-wide border border-border rounded-full px-2 py-0.5 text-muted-foreground">
+                      em breve
+                    </span>
+                  )}
+                </div>
               </div>
               <p className="text-muted-foreground text-sm">{entry.summary}</p>
             </Link>
