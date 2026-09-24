@@ -2,7 +2,7 @@
 
 "use client";
 
-import { Github, Instagram, ArrowUp } from "lucide-react";
+import { Github, ArrowUp } from "lucide-react";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -11,7 +11,12 @@ export function Footer() {
   return (
     <footer className="mt-auto border-t border-border bg-background text-center py-4 text-sm text-muted-foreground">
       <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
-        <span className="font-mono">&copy; {new Date().getFullYear()} Peterson</span>
+        <div className="flex items-center gap-3 font-mono">
+          <span>&copy; {new Date().getFullYear()} Peterson</span>
+          <span className="hidden sm:inline text-xs text-muted-foreground/70">
+            build 2026.09 · Next.js
+          </span>
+        </div>
         <div className="flex gap-4">
           <a
             href="https://github.com/petersonros"
@@ -21,15 +26,6 @@ export function Footer() {
             className="hover-glow hover:text-primary transition-colors"
           >
             <Github size={20} />
-          </a>
-          <a
-            href="https://instagram.com/peterson_ro.s"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="hover-glow hover:text-primary transition-colors"
-          >
-            <Instagram size={20} />
           </a>
           <button
             onClick={scrollToTop}
