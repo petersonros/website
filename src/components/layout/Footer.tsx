@@ -13,11 +13,11 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div className="flex items-center gap-3 font-mono">
           <span>&copy; {new Date().getFullYear()} Peterson</span>
-          <span className="hidden sm:inline text-xs text-muted-foreground/70">
+          <span className="text-xs text-muted-foreground/70">
             build 2026.09 · Next.js
           </span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-between w-full gap-4 sm:w-auto sm:justify-end">
           <a
             href="https://github.com/petersonros"
             target="_blank"
