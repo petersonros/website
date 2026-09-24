@@ -10,14 +10,14 @@ export function Footer() {
   };
   return (
     <footer className="mt-auto border-t border-border bg-background text-center py-4 text-sm text-muted-foreground">
-      <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
         <div className="flex items-center gap-3 font-mono">
           <span>&copy; {new Date().getFullYear()} Peterson</span>
           <span className="hidden sm:inline text-xs text-muted-foreground/70">
             build 2026.09 · Next.js
           </span>
         </div>
-        <div className="flex gap-4">
+        <div className="flex items-center gap-4">
           <a
             href="https://github.com/petersonros"
             target="_blank"
