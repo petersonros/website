@@ -1,5 +1,6 @@
 // src/app/formacao/page.tsx
 
+import Link from "next/link";
 import type { Metadata } from "next";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { ShufflingTitle } from "@/components/ShufflingTitle";
@@ -33,24 +34,22 @@ export default function FormacaoPage() {
 
         <ul className="grid sm:grid-cols-2 gap-4">
           {tccTopics.map((topic) => (
-            <li
-              key={topic.title}
-              className="rounded-lg border border-border bg-card p-4"
-            >
-              <div className="font-mono text-xs uppercase tracking-wide text-primary mb-1">
-                TCC
-              </div>
-              <div className="font-semibold mb-1">{topic.title}</div>
-              <p className="text-sm text-muted-foreground">
-                {topic.description}
-              </p>
+            <li key={topic.slug}>
+              <Link
+                href={`/formacao/${topic.slug}`}
+                className="hover-accent-border block h-full rounded-lg border border-border bg-card p-4 hover:shadow-lg transition-all"
+              >
+                <div className="font-mono text-xs uppercase tracking-wide text-primary mb-1">
+                  TCC
+                </div>
+                <div className="font-semibold mb-1">{topic.title}</div>
+                <p className="text-sm text-muted-foreground">
+                  {topic.description}
+                </p>
+              </Link>
             </li>
           ))}
         </ul>
-
-        <p className="text-sm text-muted-foreground font-mono">
-          # detalhes de cada trabalho em breve
-        </p>
       </div>
     </SectionWrapper>
   );

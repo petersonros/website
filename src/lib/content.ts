@@ -3,7 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import type { ContentEntryMeta } from "@/types";
 
-export type ContentSection = "tutoriais" | "scratch";
+export type ContentSection = "tutoriais" | "scratch" | "formacao";
 
 function sectionDir(section: ContentSection) {
   return path.join(process.cwd(), "src", "content", section);
