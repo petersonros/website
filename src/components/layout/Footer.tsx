@@ -2,7 +2,7 @@
 
 "use client";
 
-import { Github, ArrowUp } from "lucide-react";
+import { Github, Mail, ArrowUp } from "lucide-react";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -26,6 +26,13 @@ export function Footer() {
             className="hover-glow hover:text-primary transition-colors"
           >
             <Github size={20} />
+          </a>
+          <a
+            href="mailto:contato@petersonros.com"
+            aria-label="E-mail"
+            className="hover-glow hover:text-primary transition-colors"
+          >
+            <Mail size={20} />
           </a>
           <button
             onClick={scrollToTop}
