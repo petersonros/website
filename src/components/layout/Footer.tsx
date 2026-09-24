@@ -29,10 +29,10 @@ export function Footer() {
           </a>
           <a
             href="mailto:contato@petersonros.com"
-            aria-label="E-mail"
-            className="hover-glow hover:text-primary transition-colors"
+            className="hover-glow hover:text-primary transition-colors flex items-center gap-1.5 font-mono text-xs"
           >
-            <Mail size={20} />
+            <Mail size={16} />
+            contato@petersonros.com
           </a>
           <button
             onClick={scrollToTop}
