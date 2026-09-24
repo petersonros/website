@@ -1,0 +1,75 @@
+---
+title: "Instalando programas no Windows com Winget"
+summary: "O gerenciador de pacotes que já vem no Windows e resolve o problema de caçar instalador em site duvidoso — comandos básicos e exemplos reais de uso."
+date: "2026-09-24"
+status: "publicado"
+kind: "tutorial"
+tags: ["windows", "powershell", "winget"]
+---
+
+## O que é o Winget
+
+O **Winget** (Windows Package Manager) é o gerenciador de pacotes oficial da Microsoft — já vem instalado por padrão em instalações atualizadas do Windows 10 e 11, sem precisar baixar nada extra na maioria dos casos.
+
+A vantagem prática: em vez de abrir o navegador, procurar o site do programa, torcer pra não cair num site clonado ou cheio de anúncio enganoso, baixar o instalador e clicar em "Avançar" várias vezes — é um comando só, direto no terminal, puxando da fonte oficial catalogada pela Microsoft.
+
+## Comandos básicos
+
+**Procurar um programa:**
+```powershell
+winget search chrome
+```
+Retorna uma lista com nome, **Id** e versão. O `Id` é o identificador exato do pacote — mais confiável de usar do que o nome, porque não depende de correspondência de texto.
+
+**Instalar:**
+```powershell
+winget install --id Google.Chrome
+```
+
+**Listar o que já está instalado (e gerenciável pelo Winget):**
+```powershell
+winget list
+```
+
+**Atualizar um programa específico, ou tudo de uma vez:**
+```powershell
+winget upgrade --id Google.Chrome
+winget upgrade --all
+```
+
+## Instalação silenciosa
+
+Adicionando `--silent`, a instalação roda sem nenhuma janela ou clique manual — direto:
+
+```powershell
+winget install --id Google.Chrome --silent
+```
+
+Isso é o que torna o Winget prático pra instalar vários programas em sequência, sem precisar ficar acompanhando cada instalador abrindo na tela.
+
+## Exemplos reais
+
+Programas que costumo instalar assim, seja em máquina nova ou depois de formatar um computador de cliente (trabalho de freelance):
+
+```powershell
+winget install --id Google.Chrome --silent
+winget install --id RARLab.WinRAR --silent
+winget install --id TeamViewer.TeamViewer --silent
+winget install --id Adobe.Acrobat.Reader.64-bit --silent
+winget install --id Microsoft.Office --silent
+winget install --id Microsoft.PowerToys --source winget
+```
+
+> 💡 O PowerToys (conjunto de utilitários da própria Microsoft — redimensionar janelas, renomear arquivos em lote, entre outros) é uma boa surpresa pra quem nunca ouviu falar: `--source winget` aqui só deixa explícito de qual catálogo instalar, útil quando o mesmo Id existir em mais de uma fonte.
+
+## Instalando vários de uma vez
+
+Rodar um `winget install` por vez funciona, mas pra várias máquinas ou uma reinstalação completa, encadear com `;` economiza tempo — cada comando roda em sequência, um depois do outro termina:
+
+```powershell
+winget install --id Google.Chrome --silent; winget install --id TeamViewer.TeamViewer --silent; winget install --id Adobe.Acrobat.Reader.64-bit --silent; winget install --id Microsoft.Office --silent; winget install --id RARLab.WinRAR --silent
+```
+
+## Onde isso vai dar
+
+Pra quem formata computador com alguma frequência (é o meu caso, em trabalhos de freelance), digitar a mesma lista de programas toda vez ainda é repetitivo. O próximo passo natural é automatizar isso de vez — um script que já resolve política de execução do PowerShell, atualização do Windows, e instala tudo de uma lista só, pronto pra rodar assim que uma instalação limpa termina. Isso fica pro próximo tutorial.

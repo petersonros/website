@@ -1,0 +1,127 @@
+---
+title: "Script de pós-formatação: Windows pronto pra usar em poucos comandos"
+summary: "Continuação do tutorial de Winget: um fluxo em PowerShell pra deixar um Windows recém-formatado atualizado e com os programas certos instalados, sem clicar em nada manualmente."
+date: "2026-09-24"
+status: "publicado"
+kind: "tutorial"
+tags: ["windows", "powershell", "winget"]
+---
+
+## Contexto
+
+No [tutorial anterior](/tutoriais/winget-instalando-programas), o Winget resolveu o problema de instalar programa por programa sem caçar instalador em site nenhum. Mas formatando computador com frequência (é o meu caso, em trabalhos de freelance), ainda sobra repetição: digitar a mesma sequência de comandos toda vez que uma instalação do Windows termina. Este tutorial junta isso num fluxo só.
+
+## 1. Política de execução do PowerShell
+
+Por padrão, o PowerShell bloqueia a execução de scripts — uma proteção contra rodar algo malicioso sem querer. Antes de rodar qualquer script (inclusive os deste tutorial), é preciso verificar e, se for o caso, liberar isso.
+
+**Verificar a política atual:**
+```powershell
+Get-ExecutionPolicy
+```
+
+**Liberar de forma permanente, só pro seu usuário:**
+```powershell
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+```
+
+**Ou liberar só pra essa sessão do terminal** (fecha o PowerShell, volta a ser bloqueado):
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+> ⚠️ A diferença importa: `RemoteSigned` com `-Scope CurrentUser` é uma mudança que fica valendo depois que você fecha o terminal — mais prático pro seu próprio computador. `Bypass` com `-Scope Process` vale só pra aquela janela aberta — mais seguro em máquina de cliente, onde você não quer deixar a política do sistema alterada depois que for embora.
+
+## 2. Colocando o Windows em dia
+
+Antes de instalar programas, vale atualizar o sistema — reduz problema de compatibilidade depois e já aplica correções de segurança recentes.
+
+```powershell
+# Provedor necessário pra instalar módulos do PowerShell Gallery
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+
+# Módulo que permite gerenciar o Windows Update via linha de comando
+Install-Module -Name PSWindowsUpdate -Force -SkipPublisherCheck
+Import-Module PSWindowsUpdate
+
+# Ver o que tem disponível
+Get-WindowsUpdate
+
+# Instalar tudo, reiniciando automaticamente se precisar
+Install-WindowsUpdate -AcceptAll -AutoReboot
+```
+
+> ⚠️ `-AutoReboot` reinicia a máquina sozinho se alguma atualização exigir. Em atendimento presencial isso é conveniente; rodando remoto ou sem supervisão, vale saber que pode acontecer sem aviso na hora.
+
+Vale também manter os próprios módulos de gerenciamento de pacotes do PowerShell atualizados:
+```powershell
+Install-Module -Name PowerShellGet -Force -AllowClobber
+Install-Module -Name PackageManagement -Force -AllowClobber
+```
+
+## 3. Garantindo que o Winget está disponível
+
+A maioria das instalações recentes do Windows já vem com o Winget pronto. Se `winget --version` não retornar nada, esse bloco instala ele e as dependências manualmente:
+
+```powershell
+$progressPreference = 'silentlyContinue'
+Invoke-WebRequest -Uri https://aka.ms/getwinget -OutFile Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+Invoke-WebRequest -Uri https://aka.ms/Microsoft.VCLibs.x64.14.00.Desktop.appx -OutFile Microsoft.VCLibs.x64.14.00.Desktop.appx
+Invoke-WebRequest -Uri https://github.com/microsoft/microsoft-ui-xaml/releases/download/v2.8.6/Microsoft.UI.Xaml.2.8.x64.appx -OutFile Microsoft.UI.Xaml.2.8.x64.appx
+
+Add-AppxPackage Microsoft.VCLibs.x64.14.00.Desktop.appx
+Add-AppxPackage Microsoft.UI.Xaml.2.8.x64.appx
+Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+```
+
+## 4. Instalando os programas — três formas
+
+Com o Windows atualizado e o Winget disponível, falta instalar a lista de programas. Três jeitos de fazer isso, do mais simples ao mais reutilizável:
+
+**Um comando por linha** (mais fácil de ler e editar):
+```powershell
+winget install --id Google.Chrome --silent
+winget install --id TeamViewer.TeamViewer --silent
+winget install --id Adobe.Acrobat.Reader.64-bit --silent
+winget install --id Microsoft.Office --silent
+winget install --id RARLab.WinRAR --silent
+```
+
+**Encadeado numa linha só** (útil pra colar rápido num terminal já aberto):
+```powershell
+winget install --id Google.Chrome --silent; winget install --id TeamViewer.TeamViewer --silent; winget install --id Adobe.Acrobat.Reader.64-bit --silent; winget install --id Microsoft.Office --silent; winget install --id RARLab.WinRAR --silent
+```
+
+**Arquivo JSON com `winget import`** (a forma que realmente vale manter como padrão):
+```json
+{
+  "source": "winget",
+  "packages": [
+    { "id": "Google.Chrome" },
+    { "id": "Adobe.Acrobat.Reader.64-bit" },
+    { "id": "TeamViewer.TeamViewer" }
+  ]
+}
+```
+```powershell
+winget import -i apps.json
+```
+
+> 💡 As três fazem a mesma coisa, mas pra quem formata computador com frequência, o arquivo JSON é o que vale guardar de verdade — é só editar a lista uma vez e reusar em toda máquina nova, sem reescrever comando nenhum. Os outros dois formatos são melhores pra um uso pontual, não pra virar rotina.
+
+## O fluxo completo
+
+Juntando as quatro etapas, na ordem que elas realmente fazem sentido — liberar a execução de script primeiro, atualizar o sistema, garantir o Winget, e só então instalar os programas:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-Module -Name PSWindowsUpdate -Force -SkipPublisherCheck
+Import-Module PSWindowsUpdate
+Install-WindowsUpdate -AcceptAll -AutoReboot
+
+winget import -i apps.json
+```
+
+Esse é o ponto de partida real de uma formatação — o resto (configurações específicas de cada cliente, perfis de e-mail, etc.) ainda é manual, mas a parte repetitiva e propensa a esquecimento já sai resolvida em poucos minutos, sem clicar em nada.
