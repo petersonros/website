@@ -56,14 +56,6 @@ export default function SobrePage() {
           minha formação, tutoriais técnicos e o material de Scratch.
         </p>
 
-        <div className="pt-4">
-          <Link
-            href="/"
-            className="inline-block px-4 py-2 text-sm font-semibold text-primary-foreground bg-primary hover:opacity-90 rounded transition-opacity"
-          >
-            ← Voltar à Home
-          </Link>
-        </div>
       </div>
     </SectionWrapper>
   );

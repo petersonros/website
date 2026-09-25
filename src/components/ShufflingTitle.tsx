@@ -14,16 +14,19 @@ export function ShufflingTitle({
   delay = 50,
 }: ShufflingTitleProps) {
   const [displayed, setDisplayed] = useState(text);
+  const [prevText, setPrevText] = useState(text);
+
+  if (text !== prevText) {
+    setPrevText(text);
+    setDisplayed(text);
+  }
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (prefersReducedMotion) {
-      setDisplayed(text);
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     let iteration = 0;
 

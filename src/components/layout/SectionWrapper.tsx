@@ -8,7 +8,7 @@ export function SectionWrapper({
 }: SectionWrapperProps) {
   return (
     <section
-      className={`min-h-screen pt-24 md:pt-32 px-4 md:px-6 flex flex-col items-center bg-background text-foreground ${className}`}
+      className={`min-h-screen pt-24 md:pt-32 pb-4 px-4 md:px-6 flex flex-col items-center bg-background text-foreground ${className}`}
     >
       {children}
     </section>
