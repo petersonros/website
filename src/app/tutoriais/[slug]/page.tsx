@@ -39,7 +39,7 @@ export default async function TutorialPage({
         <Post />
         <Link
           href="/tutoriais"
-          className="mt-8 inline-block text-primary hover:underline"
+          className="mt-8 mb-4 inline-block text-primary hover:underline"
         >
           ← Voltar para tutoriais
         </Link>

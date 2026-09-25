@@ -1,0 +1,103 @@
+---
+title: "Instalando programas no Ubuntu com APT"
+description: "Como instalar programas no Ubuntu sem depender de sites de terceiros, usando o gerenciador de pacotes APT — comandos básicos e três cenários reais do dia a dia."
+date: "2026-09-25"
+status: "publicado"
+kind: "tutorial"
+---
+
+Uso o Ubuntu como meu sistema pessoal, e uma das coisas que mais gosto é não precisar sair procurando "baixar [programa] site oficial" e torcer pra não cair em algum site clonado ou cheio de propaganda enganosa. No Ubuntu (e em qualquer distribuição baseada em Debian) isso é resolvido por um gerenciador de pacotes chamado **APT**, que instala programas direto de fontes confiáveis, por linha de comando.
+
+## O que é o APT
+
+APT (*Advanced Package Tool*) é o gerenciador de pacotes do Ubuntu. Ele instala, atualiza e remove programas a partir de **repositórios** — servidores mantidos pela Canonical (empresa por trás do Ubuntu) e por terceiros de confiança, com pacotes já testados e assinados digitalmente.
+
+Um comando resolve o que, de outra forma, seria procurar um instalador na internet.
+
+## Comandos básicos
+
+Todo comando do APT que instala, remove ou atualiza algo precisa rodar com `sudo` (permissão de administrador):
+
+```bash
+# Atualiza a lista de pacotes disponíveis nos repositórios
+sudo apt update
+
+# Procura um programa pelo nome
+apt search nome-do-programa
+
+# Instala um programa
+sudo apt install nome-do-programa
+
+# Lista os programas instalados manualmente (não conta dependências)
+apt-mark showmanual
+
+# Atualiza todos os programas instalados
+sudo apt update && sudo apt upgrade
+```
+
+Um detalhe que vale explicar: `apt update` **não atualiza programas** — ele só atualiza a *lista* do que existe disponível nos repositórios. Quem realmente instala as atualizações é o `apt upgrade`. Por isso os dois costumam vir juntos.
+
+## Três jeitos de instalar, três cenários reais
+
+Nem todo programa vem do mesmo lugar. Separei pelos programas de uso comum que uso de verdade na minha máquina, porque cada um ilustra uma situação diferente.
+
+### 1. Direto do repositório oficial
+
+A maioria dos programas do dia a dia já está disponível assim que o Ubuntu é instalado — não precisa adicionar nada, só instalar:
+
+```bash
+sudo apt install vlc mpv
+```
+
+`VLC` e `MPV` (meus players de vídeo) são exemplos disso: já estão no repositório principal do Ubuntu, prontos pra instalar com um comando só.
+
+### 2. Um componente que existe, mas vem desligado por padrão
+
+Às vezes o pacote existe nos repositórios do Ubuntu, mas mora numa categoria que não vem habilitada por padrão — geralmente por questão de licenciamento (drivers proprietários) ou porque a Canonical não dá suporte oficial completo àquele componente.
+
+**Steam** é o exemplo mais direto: ele mora no repositório `multiverse`, que trata de pacotes com restrição de licença e não vem ativado numa instalação padrão.
+
+```bash
+sudo add-apt-repository multiverse
+sudo apt update
+sudo apt install steam
+```
+
+**Drivers da NVIDIA** seguem uma lógica parecida, mas o Ubuntu já facilita ainda mais: em vez de mexer manualmente no repositório `restricted`, existe uma ferramenta pronta que detecta sua placa de vídeo e instala o driver certo sozinha:
+
+```bash
+sudo ubuntu-drivers autoinstall
+```
+
+### 3. Repositório de terceiros (o fabricante mantém o próprio canal)
+
+Alguns programas não vêm nos repositórios da Canonical de jeito nenhum — mas o próprio fabricante disponibiliza um repositório oficial que você adiciona manualmente, uma única vez. Depois disso, ele funciona como qualquer outro pacote: recebe atualizações pelo `apt upgrade` normalmente.
+
+**Discord** é um exemplo assim: o pacote `.deb` é baixado direto do site oficial e instalado pelo APT, que resolve as dependências:
+
+```bash
+sudo apt install ./discord-*.deb
+```
+
+**Google Chrome** segue o mesmo caminho — baixa o `.deb` do site oficial e instala:
+
+```bash
+sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
+Mesmo baixando o arquivo manualmente, ainda é o APT resolvendo a instalação e as dependências — só a origem do arquivo que muda. Isso também é o que garante que, depois de instalado, o programa continue recebendo atualizações junto com o resto do sistema pelo `apt upgrade`.
+
+## Programas que uso e onde cada um se encaixa
+
+Pra fechar, um resumo de como esses cenários se aplicam aos programas de uso comum que realmente uso no dia a dia:
+
+| Programa | Categoria |
+|---|---|
+| VLC, MPV | Repositório oficial |
+| OBS Studio | Repositório oficial |
+| Discord, Spotify | Repositório de terceiros (via `.deb`) |
+| Google Chrome | Repositório de terceiros (`.deb` baixado direto) |
+| Steam | Componente `multiverse` |
+| Driver NVIDIA | `ubuntu-drivers autoinstall` |
+
+Fica de fora dessa lista, de propósito, tudo que é ferramenta de ambiente de desenvolvimento (VS Code, Warp, Arduino IDE) — faz mais sentido tratar isso à parte, num conteúdo focado em deixar a máquina pronta pra programar, em vez de misturar com os programas de uso comum aqui. Esse é um bom gancho pra próxima parte deste tutorial: um script que já deixa o Ubuntu pronto logo depois de uma instalação limpa.
